@@ -57,11 +57,12 @@
                             <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                         </div>
                         <input #phoneNumberInput="ngModel" ngModel name="phoneNumber" class="form-control"
-                            placeholder="Phone number" type="text">
-                        <input #phoneNumberInput="ngModel" ngModel name="role" class="form-control" value="user"
-                            type="text" style="display: none;">
+                            placeholder="Phone number" [class.is-valid]="!phoneNumberInput.errors && phoneNumberInput.touched"
+                            [class.is-invalid]="phoneNumberInput.errors && phoneNumberInput.touched" required pattern="\d{3,}"
+                            type="text">
+                        <div *ngIf="phoneNumberInput.errors && phoneNumberInput.touched" class="invalid-feedback">Input must
+                            be least 3 digits log.</div>
                     </div>
-
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -99,7 +100,6 @@
                     </div>
                     <p class="text-center">Have an account? <a routerLink="/user/login">Log In</a> </p>
                 </form>
-         
             </div>
             <div class="col-lg-4"></div>
         </div>

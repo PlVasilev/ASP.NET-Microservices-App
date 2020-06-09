@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  loginHandler(data) {
+  loginHandler(formValue) {
+    this.userService.login(formValue).subscribe(data => {
+      console.log(data)
+    })
     // this.userService.login(data.username, data.password).then((result) => {
     //   if(result == true){
     //     this.notifier.notify("success", "You have Logged in!");
