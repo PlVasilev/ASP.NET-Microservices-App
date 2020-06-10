@@ -46,7 +46,7 @@ namespace Seller.Server.Controllers
         }
 
         [Route(nameof(Login))]
-        public async Task<ActionResult<string>> Login(LoginUserRequestModel model)
+        public async Task<ActionResult<LoginResponseModel>> Login(LoginUserRequestModel model)
         {
             var user = await this.userManager.FindByNameAsync(model.UserName);
             if (user == null)
@@ -74,7 +74,10 @@ namespace Seller.Server.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var encryptedToken = tokenHandler.WriteToken(token);
 
-            return encryptedToken;
+            return new LoginResponseModel
+            {
+                Token = encryptedToken
+            };
         }
     }
 }

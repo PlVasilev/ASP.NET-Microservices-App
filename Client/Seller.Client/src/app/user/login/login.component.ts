@@ -12,7 +12,8 @@ export class LoginComponent {
 
   loginHandler(formValue) {
     this.userService.login(formValue).subscribe(data => {
-      console.log(data)
+      console.log(data['token'])
+      this.userService.saveToken(data['token'])
     })
     // this.userService.login(data.username, data.password).then((result) => {
     //   if(result == true){
