@@ -25,13 +25,17 @@ namespace Seller.Server.Data.Models
         [Required]
         public DateTime Created { get; set; }
 
-        public string DealId { get; set; } = null;
+        public string? DealId { get; set; } = null;
         public Deal Deal { get; set; } = null;
 
         public ICollection<Offer> Offers { get; set; } = new List<Offer>();
 
         [Required]
+        public string SellerId { get; set; }
+        [Required]
         public User Seller { get; set; }
+
+        public bool IsDeleted { get; set; }
 
     }
 }

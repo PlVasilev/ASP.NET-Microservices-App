@@ -23,8 +23,9 @@ namespace Seller.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Listing>()
-                .HasOne(a => a.Deal)
-                .WithOne(b => b.Listing);
+                .HasOne<Deal>(a => a.Deal)
+                .WithOne(b => b.Listing)
+                .HasForeignKey<Deal>(a => a.ListingId);
 
             builder.Entity<Deal>()
                 .HasOne(u => u.Seller)

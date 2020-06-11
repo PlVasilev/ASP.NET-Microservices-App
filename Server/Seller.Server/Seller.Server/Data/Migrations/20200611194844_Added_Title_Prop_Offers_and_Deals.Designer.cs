@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seller.Server.Data;
 
 namespace Seller.Server.Data.Migrations
 {
     [DbContext(typeof(SellerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200611194844_Added_Title_Prop_Offers_and_Deals")]
+    partial class Added_Title_Prop_Offers_and_Deals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,13 +161,6 @@ namespace Seller.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ListingId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -181,9 +176,6 @@ namespace Seller.Server.Data.Migrations
 
                     b.HasIndex("BuyerId");
 
-                    b.HasIndex("ListingId")
-                        .IsUnique();
-
                     b.HasIndex("SellerId");
 
                     b.ToTable("Deals");
@@ -198,7 +190,7 @@ namespace Seller.Server.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DealId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -207,9 +199,6 @@ namespace Seller.Server.Data.Migrations
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -223,6 +212,10 @@ namespace Seller.Server.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DealId")
+                        .IsUnique()
+                        .HasFilter("[DealId] IS NOT NULL");
 
                     b.HasIndex("SellerId");
 
@@ -240,9 +233,6 @@ namespace Seller.Server.Data.Migrations
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("SenderId")
                         .IsRequired()
@@ -270,9 +260,6 @@ namespace Seller.Server.Data.Migrations
                     b.Property<string>("CreatorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("ListingId")
                         .IsRequired()
@@ -316,9 +303,6 @@ namespace Seller.Server.Data.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -429,12 +413,6 @@ namespace Seller.Server.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Seller.Server.Data.Models.Listing", "Listing")
-                        .WithOne("Deal")
-                        .HasForeignKey("Seller.Server.Data.Models.Deal", "ListingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Seller.Server.Data.Models.User", "Seller")
                         .WithMany("SaleDeals")
                         .HasForeignKey("SellerId")
@@ -444,6 +422,10 @@ namespace Seller.Server.Data.Migrations
 
             modelBuilder.Entity("Seller.Server.Data.Models.Listing", b =>
                 {
+                    b.HasOne("Seller.Server.Data.Models.Deal", "Deal")
+                        .WithOne("Listing")
+                        .HasForeignKey("Seller.Server.Data.Models.Listing", "DealId");
+
                     b.HasOne("Seller.Server.Data.Models.User", "Seller")
                         .WithMany("Listings")
                         .HasForeignKey("SellerId")

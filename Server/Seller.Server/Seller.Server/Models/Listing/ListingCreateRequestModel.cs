@@ -3,33 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Seller.Server.Data.Models;
 
-namespace Seller.Server.Data.Models
+namespace Seller.Server.Models.Listing
 {
-    public class Offer
+    public class ListingCreateRequestModel
     {
         [Key]
         public string Id { get; set; }
 
         [Required]
         public string Title { get; set; }
-
         [Required]
-        public string ListingId { get; set; }
+        public string ImageUrl { get; set; }
         [Required]
-        public Listing Listing { get; set; }
+        public string Description { get; set; }
 
         [Range(typeof(decimal), "0.01", "79228162514264337593543950335")]
         public decimal Price { get; set; }
 
-        [Required]
-        public DateTime Created { get; set; }
+        public ICollection<Offer> Offers { get; set; } = new List<Offer>();
 
         [Required]
-        public string CreatorId { get; set; }
+        public string SellerId { get; set; }
         [Required]
-        public User Creator { get; set; }
+        public User Seller { get; set; }
 
-        public bool IsDeleted { get; set; } 
+        public bool IsDeleted { get; set; } = false;
     }
 }

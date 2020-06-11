@@ -13,6 +13,8 @@ namespace Seller.Server.Data.Models
         [Required]
         public string LastName { get; set; }
 
+        public bool IsDeleted { get; set; } 
+
         public ICollection<Deal> SaleDeals { get; set; } = new List<Deal>();
         public ICollection<Deal> BuyDeals { get; set; } = new List<Deal>();
         public ICollection<Offer> Offers { get; set; } = new List<Offer>();
