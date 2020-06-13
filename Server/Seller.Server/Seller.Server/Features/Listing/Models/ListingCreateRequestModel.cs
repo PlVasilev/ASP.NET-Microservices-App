@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Seller.Server.Data.Models;
-
-namespace Seller.Server.Models.Listing
+﻿namespace Seller.Server.Features.Listing.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using Seller.Server.Data.Models;
     public class ListingCreateRequestModel
     {
         [Key]

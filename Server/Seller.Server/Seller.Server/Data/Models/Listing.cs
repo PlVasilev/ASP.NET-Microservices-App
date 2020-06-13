@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Seller.Server.Data.Models
+﻿namespace Seller.Server.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     public class Listing
     {
         [Key]
@@ -25,7 +21,7 @@ namespace Seller.Server.Data.Models
         [Required]
         public DateTime Created { get; set; }
 
-        public string? DealId { get; set; } = null;
+        public string DealId { get; set; } = null;
         public Deal Deal { get; set; } = null;
 
         public ICollection<Offer> Offers { get; set; } = new List<Offer>();

@@ -1,8 +1,4 @@
-﻿
-
-using System.Linq;
-
-namespace Seller.Server.Data
+﻿namespace Seller.Server.Data
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

@@ -1,4 +1,4 @@
-﻿namespace Seller.Server.Data.Models
+﻿namespace Seller.Server.Features.Identity.Models
 {
     public class LoginResponseModel
     {

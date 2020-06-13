@@ -1,4 +1,4 @@
-﻿namespace Seller.Server.Controllers
+﻿namespace Seller.Server.Features
 {
     using Microsoft.AspNetCore.Mvc;
 

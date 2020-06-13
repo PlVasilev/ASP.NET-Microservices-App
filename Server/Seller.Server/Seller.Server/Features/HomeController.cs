@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace Seller.Server.Controllers
+﻿namespace Seller.Server.Features
 {
-    using System;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
 
     public class HomeController : ApiController
     {
-       [Authorize]
+        [HttpGet]
+        [Authorize]
         public ActionResult Get()
         {
             return Ok("Works");

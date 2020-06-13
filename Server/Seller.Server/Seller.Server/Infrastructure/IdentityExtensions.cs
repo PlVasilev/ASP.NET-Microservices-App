@@ -1,7 +1,7 @@
-﻿using System.Linq;
-namespace Seller.Server.Infrastructure
+﻿namespace Seller.Server.Infrastructure
 {
     using System.Security.Claims;
+    using System.Linq;
 
     public static class IdentityExtensions
     {
