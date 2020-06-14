@@ -20,13 +20,12 @@
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<string>> Create(ListingCreateRequestModel model)
+        [Route(nameof(Create))]
+        public async Task<ActionResult<ListingCreateResponseModel>> Create(ListingCreateRequestModel model)
         {
             var userId = User.GetId();
 
-            var id = await listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, userId);
-
-            return Created(nameof(this.Create), id);
+            return await listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, userId);
         }
     }
 }

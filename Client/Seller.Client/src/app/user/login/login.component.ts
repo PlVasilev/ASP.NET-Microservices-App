@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ export class LoginComponent {
 
   loginHandler(formValue) {
     this.userService.login(formValue).subscribe(data => {
-      console.log(data['token'])
-      this.userService.saveToken(data['token'])
+      console.log(data)
+      this.userService.saveToken(data['token'],data['username'])
     })
     // this.userService.login(data.username, data.password).then((result) => {
     //   if(result == true){

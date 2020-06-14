@@ -5,20 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
-import { UserService } from './services/user.service';
+import { UserService } from './user/user.service';
+import { ListingModule } from './listing/listing.module';
+import {ListingService} from './listing/listing.service';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    UserModule,
-    CoreModule,
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    CoreModule,
+    UserModule,
+    ListingModule
   ],
-  providers: [UserService],
+  providers: [UserService,ListingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

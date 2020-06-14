@@ -1,4 +1,6 @@
-﻿namespace Seller.Server.Features.Listing.Services
+﻿using Seller.Server.Features.Listing.Models;
+
+namespace Seller.Server.Features.Listing.Services
 {
     using System;
     using System.Threading.Tasks;
@@ -12,11 +14,12 @@
         {
             this.context = context;
         }
-        public async Task<string> Create(string title, string description, string imageUrl, decimal price, string userId)
+        public async Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId)
         {
 
             var listing = new Data.Models.Listing()
             {
+                Id = Guid.NewGuid().ToString(),
                 Title = title,
                 Created = DateTime.UtcNow,
                 Description = description,
@@ -29,7 +32,17 @@
             context.Add(listing); 
             await context.SaveChangesAsync();
 
-            return listing.Id;
+            return new ListingCreateResponseModel()
+            {
+                Id = listing.Id,
+                Title = listing.Title,
+                Created = listing.Created,
+                Description = listing.Description,
+                ImageUrl = listing.ImageUrl,
+                Price = listing.Price,
+                IsDeleted = listing.IsDeleted,
+                SellerId = listing.SellerId
+            };
         }
 
     }

@@ -18,13 +18,6 @@
         [Range(typeof(decimal), "0.01", "79228162514264337593543950335")]
         public decimal Price { get; set; }
 
-        public ICollection<Offer> Offers { get; set; } = new List<Offer>();
-
-        [Required]
-        public string SellerId { get; set; }
-        [Required]
-        public User Seller { get; set; }
-
         public bool IsDeleted { get; set; } = false;
     }
 }

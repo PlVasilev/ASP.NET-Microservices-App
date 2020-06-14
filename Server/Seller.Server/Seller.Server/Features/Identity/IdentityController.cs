@@ -54,6 +54,7 @@
             
             return new LoginResponseModel
             {
+                Username = user.UserName,
                 Token = identityService.GenerateJwtToken(user.Id,user.UserName,this.appSettings.Secret)
             };
         }
