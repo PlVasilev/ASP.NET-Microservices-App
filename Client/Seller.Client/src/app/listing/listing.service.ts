@@ -15,9 +15,9 @@ export class ListingService {
   private createPath = environment.apiUrl + '/listing/create'
 
   create(data): Observable<IListing>{
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${this.userService.getToken()}`)
-    return this.http.post<IListing>(this.createPath, data, {headers})
+    //let headers = new HttpHeaders();
+    //headers = headers.set('Authorization', `Bearer ${this.userService.getToken()}`)
+    return this.http.post<IListing>(this.createPath, data)
   }
 
 }

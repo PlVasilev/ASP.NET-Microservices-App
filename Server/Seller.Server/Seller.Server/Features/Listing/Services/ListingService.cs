@@ -1,4 +1,7 @@
-﻿using Seller.Server.Features.Listing.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Seller.Server.Features.Listing.Models;
 
 namespace Seller.Server.Features.Listing.Services
 {
@@ -29,7 +32,7 @@ namespace Seller.Server.Features.Listing.Services
                 SellerId = userId
             };
 
-            context.Add(listing); 
+            context.Add(listing);
             await context.SaveChangesAsync();
 
             return new ListingCreateResponseModel()
@@ -44,6 +47,34 @@ namespace Seller.Server.Features.Listing.Services
                 SellerId = listing.SellerId
             };
         }
+
+        public async Task<IEnumerable<ListingAllResponseModel>> All() => await this.context
+                .Listings
+                .Where(l => l.IsDeleted == false)
+                .OrderByDescending(l => l.Created)
+                .Select(l => new ListingAllResponseModel
+                {
+                    Id = l.Id,
+                    Title = l.Title,
+                    ImageUrl = l.ImageUrl,
+                    Price = l.Price,
+                    Created = l.Created.ToString("D")
+                }).ToListAsync();
+
+
+        public async Task<IEnumerable<ListingAllResponseModel>> Mine(string userId) => await this.context
+            .Listings
+            .Where(l => l.SellerId == userId && l.IsDeleted == false)
+            .OrderByDescending(l => l.Created)
+            .Select(l => new ListingAllResponseModel
+            {
+                Id = l.Id,
+                Title = l.Title,
+                ImageUrl = l.ImageUrl,
+                Price = l.Price,
+                Created = l.Created.ToString("D")
+            }).ToListAsync();
+
 
     }
 }
