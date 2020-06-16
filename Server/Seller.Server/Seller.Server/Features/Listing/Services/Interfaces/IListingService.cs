@@ -9,6 +9,12 @@ namespace Seller.Server.Features.Listing.Services.Interfaces
     {
         public Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId);
 
+        public Task<ListingDetailsResponseModel> Details(string id);
+
+        public Task<bool> Update(string id, string title, string description, string imageUrl, decimal price, string userId);
+
+        public Task<bool> Delete(string id, string userId);
+
         public Task<IEnumerable<ListingAllResponseModel>> All();
 
         public Task<IEnumerable<ListingAllResponseModel>> Mine(string userId);

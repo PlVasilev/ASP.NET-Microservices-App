@@ -1,4 +1,6 @@
-﻿namespace Seller.Server.Infrastructure
+﻿using Seller.Server.Infrastructure.Filters;
+
+namespace Seller.Server.Infrastructure.Extensions
 {
     using Data;
     using Data.Models;
@@ -77,6 +79,9 @@
             {
                 c.SwaggerDoc("v1", new OpenApiInfo() {Title = "Seller API", Version = "v1"});
             });
+
+        public static void AddApiControllers(this IServiceCollection services) =>
+            services.AddControllers(option => option.Filters.Add<ModelOrNotFoundActionFilter>());
 
     }
 }

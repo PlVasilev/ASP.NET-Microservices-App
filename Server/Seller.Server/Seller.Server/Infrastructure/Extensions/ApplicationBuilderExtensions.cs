@@ -1,6 +1,6 @@
 ﻿
 
-namespace Seller.Server.Infrastructure
+namespace Seller.Server.Infrastructure.Extensions
 {
     using Data;
     using System;

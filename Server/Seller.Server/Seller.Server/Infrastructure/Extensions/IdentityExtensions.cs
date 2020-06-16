@@ -1,4 +1,4 @@
-﻿namespace Seller.Server.Infrastructure
+﻿namespace Seller.Server.Infrastructure.Extensions
 {
     using System.Security.Claims;
     using System.Linq;

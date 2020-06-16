@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Seller.Server.Features.Listing.Models;
-
-namespace Seller.Server.Features.Listing.Services
+﻿namespace Seller.Server.Features.Listing.Services
 {
     using System;
     using System.Threading.Tasks;
     using Data;
     using Interfaces;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.EntityFrameworkCore;
+    using Models;
     public class ListingService : IListingService
     {
         private readonly SellerDbContext context;
@@ -48,18 +47,68 @@ namespace Seller.Server.Features.Listing.Services
             };
         }
 
-        public async Task<IEnumerable<ListingAllResponseModel>> All() => await this.context
+        public async Task<ListingDetailsResponseModel> Details(string id) => await this.context
+            .Listings
+            .Where(l => l.IsDeleted == false && l.Id == id)
+            .Select(l => new ListingDetailsResponseModel()
+            {
+                Id = l.Id,
+                Title = l.Title,
+                ImageUrl = l.ImageUrl,
+                Price = l.Price,
+                Description = l.Description,
+                OffersCount = l.Offers.Count(),
+                SellerId = l.SellerId,
+                SellerName = l.Seller.FirstName + " " + l.Seller.LastName,
+                Created = l.Created.ToString("D")
+            }).FirstOrDefaultAsync();
+
+        public async Task<bool> Update(string id, string title, string description, string imageUrl, decimal price, string userId)
+        {
+            var listing = await this.context
                 .Listings
-                .Where(l => l.IsDeleted == false)
-                .OrderByDescending(l => l.Created)
-                .Select(l => new ListingAllResponseModel
-                {
-                    Id = l.Id,
-                    Title = l.Title,
-                    ImageUrl = l.ImageUrl,
-                    Price = l.Price,
-                    Created = l.Created.ToString("D")
-                }).ToListAsync();
+                .Where(l => l.Id == id && l.SellerId == userId && l.IsDeleted == false)
+                .FirstOrDefaultAsync();
+
+            if (listing == null) return false;
+
+            listing.Title = title;
+            listing.Description = description;
+            listing.ImageUrl = imageUrl;
+            listing.Price = price;
+            listing.Created = DateTime.UtcNow;
+
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> Delete(string id,string userId)
+        {
+            var listing = await this.context
+                .Listings
+                .Where(l => l.Id == id && l.SellerId == userId && l.IsDeleted == false)
+                .FirstOrDefaultAsync();
+
+            if (listing == null) return false;
+
+            listing.IsDeleted = true;
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<IEnumerable<ListingAllResponseModel>> All() => await this.context
+            .Listings
+            .Where(l => l.IsDeleted == false)
+            .OrderByDescending(l => l.Created)
+            .Select(l => new ListingAllResponseModel
+            {
+                Id = l.Id,
+                Title = l.Title,
+                ImageUrl = l.ImageUrl,
+                Price = l.Price,
+                Created = l.Created.ToString("D")
+            }).ToListAsync();
 
 
         public async Task<IEnumerable<ListingAllResponseModel>> Mine(string userId) => await this.context

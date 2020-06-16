@@ -1,6 +1,6 @@
 namespace Seller.Server
 {
-    using Infrastructure;
+    using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -23,7 +23,7 @@ namespace Seller.Server
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
                 .AddAppServices()
                 .AddSwagger()
-                .AddControllers();
+                .AddApiControllers();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
