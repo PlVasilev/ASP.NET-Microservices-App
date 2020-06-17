@@ -2,7 +2,11 @@ export interface IListing {
     id: string,
     title: string,
     imageUrl: string,
-    description: string,
     price: number,
-    isDeleted: boolean
+    description?: string,
+    created?: string,
+    offersCount?: string
+    sellerId?: string,
+    sellerName?: string,
+    isDeleted?: boolean
   }

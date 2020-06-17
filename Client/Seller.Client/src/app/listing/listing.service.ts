@@ -13,11 +13,22 @@ export class ListingService {
   constructor(private http:HttpClient, private userService: UserService) { }
 
   private createPath = environment.apiUrl + '/listing/create'
+  private getAllPath = environment.apiUrl + '/listing/all'
+  private detailsPath = environment.apiUrl + '/listing/'
 
   create(data): Observable<IListing>{
-    //let headers = new HttpHeaders();
-    //headers = headers.set('Authorization', `Bearer ${this.userService.getToken()}`)
     return this.http.post<IListing>(this.createPath, data)
   }
 
+  getListings(): Observable<Array<IListing>>{
+    return this.http.get<Array<IListing>>(this.getAllPath)
+  }
+
+  details(id): Observable<IListing>{
+    return this.http.get<IListing>(this.detailsPath + id)
+  }
+
+  delete(id){
+    return this.http.delete(this.detailsPath + id)
+  }
 }

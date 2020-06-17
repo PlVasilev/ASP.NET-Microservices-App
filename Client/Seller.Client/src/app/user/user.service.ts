@@ -8,6 +8,7 @@ import { environment } from "../../environments/environment"
 })
 export class UserService implements OnInit{
 
+  userId: string
   token: string;
   username: string;
 
@@ -17,6 +18,7 @@ export class UserService implements OnInit{
   private registerPath = environment.apiUrl + '/identity/register'
 
   ngOnInit(){
+    this.userId = this.getUserId()
     this.token = this.getToken()
     this.username = this.getUsername() 
   }
@@ -30,9 +32,14 @@ export class UserService implements OnInit{
     return this.http.post(this.registerPath, data)
   }
 
-  saveToken(token, username){
+  saveToken(userId, token, username){
+    localStorage.setItem('userId', userId)
     localStorage.setItem('token', token)
     localStorage.setItem('username', username)
+  }
+
+  getUserId(){
+    return localStorage.getItem('userId');
   }
 
   getToken(){
@@ -44,10 +51,13 @@ export class UserService implements OnInit{
   }
 
   logout() {
+    localStorage.removeItem('id')
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    this.userId = null;
+    this.token = null;
+    this.username = null;
     this.getToken()
-    this.getUsername() 
-    // this.router.navigate(['auth'])
+    this.getUsername()  
   }
 }

@@ -1,0 +1,35 @@
+<div *ngIf="!selectedListing" class="site-section" id="property-details">
+    <h1>LOADING...</h1>
+</div>
+<div *ngIf="selectedListing" class="site-section" id="property-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 pl-lg-5 ml-auto">
+                <h3 class="text-black mb-4">Title: {{selectedListing.title}}</h3>
+            </div>
+
+            <div class="col-lg-12">
+
+                <div class="owl-carousel slide-one-item with-dots">
+                    <div><img src={{selectedListing.imageUrl}} alt="Image" class="img-fluid"></div>
+
+                </div>
+            </div>
+            <div class="col-lg-12 pl-lg-5 ml-auto">
+                <div class="mb-5 property-details">
+                    <p>Price: $ {{selectedListing.price}}</p>
+                    <p>Offers: {{selectedListing.offersCount}}</p>
+                    <p>Posted on: {{selectedListing.created}}</p>
+                    <p>Posted by: {{selectedListing.sellerName}}</p>
+                    <p>Description: {{selectedListing.description}}</p>
+                    <p> <a *ngIf="token && userId != selectedListing.sellerId" class="btn btn-primary active"
+                            (click)="sendRequestHandler()">Send Reqest to view the property</a></p>
+                    <p> <a *ngIf="token && userId == selectedListing.sellerId" routerLink="/listing/edit"
+                            class="btn btn-primary active">Edit</a></p>
+                    <p> <a *ngIf="token && userId == selectedListing.sellerId"
+                            (click)="deleteHandler(selectedListing.id)" class="btn btn-danger active">Delete</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

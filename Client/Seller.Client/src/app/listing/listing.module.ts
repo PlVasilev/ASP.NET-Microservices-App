@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { ListingRoutingModule } from './listing-routing.module';
 import { AllComponent } from './all/all.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
-  declarations: [AddComponent, AllComponent],
+  declarations: [AddComponent, AllComponent, DetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

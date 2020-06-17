@@ -32,8 +32,8 @@
                   <li>And so on and so on</li>
                 </ul>
 
-                <p *ngIf="true"><a routerLink="/user/register" class="btn btn-primary mr-2 mb-2">Get Started</a></p>
-                <p *ngIf="true"><a routerLink="/listing/all" class="btn btn-primary mr-2 mb-2">See the Properties</a></p>
+                <p *ngIf="!token"><a routerLink="/user/register" class="btn btn-primary mr-2 mb-2">Get Started</a></p>
+                <p *ngIf="token"><a routerLink="/listing/all" class="btn btn-primary mr-2 mb-2">See the Properties</a></p>
             
           </div>
         </div>

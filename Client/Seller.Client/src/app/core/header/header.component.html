@@ -7,6 +7,9 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li *ngIf="token"  class="nav-item">
+        <a class="navbar-brand" routerLink="/listing/all">All Listings</a>
+      </li>
+      <li *ngIf="token"  class="nav-item">
         <a class="navbar-brand" routerLink="/listing/add">Add Property</a>
       </li>
     </ul>
