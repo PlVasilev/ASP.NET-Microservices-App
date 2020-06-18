@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddComponent } from './add/add.component';
 import { DetailsComponent } from './details/details.component';
 import { AllComponent } from './all/all.component';
-// import { EditComponent } from './edit/edit.component';
+import { EditComponent } from './edit/edit.component';
 import { AuthGuard } from '../auth.guard';
 // import { SearchComponent } from './search/search.component';
 
@@ -31,7 +31,12 @@ const routes: Routes = [
             {
                 path: 'details/:id',
                 component: DetailsComponent
-            }
+            },
+            {
+                path: 'edit/:id',
+                component: EditComponent
+            },
+           
         ]
     }
 ];

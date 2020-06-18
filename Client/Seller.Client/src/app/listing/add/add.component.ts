@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {ListingService } from '../listing.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -9,7 +10,7 @@ import {ListingService } from '../listing.service'
 })
 export class AddComponent {
 
-  constructor(private listingService: ListingService) { }
+  constructor(private listingService: ListingService,private router: Router) { }
 
   @ViewChild('addListingForm', { static: true }) from: NgForm
 
@@ -17,7 +18,8 @@ export class AddComponent {
     this.listingService.create(data).subscribe(res => {
       console.log(res)
     });
-    // this.from.reset();
+    this.from.reset();
+    this.router.navigate(['listing/all']);
   }
 
 }

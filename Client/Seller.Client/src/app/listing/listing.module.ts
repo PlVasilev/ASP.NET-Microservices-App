@@ -5,15 +5,16 @@ import { AddComponent } from './add/add.component';
 import { ListingRoutingModule } from './listing-routing.module';
 import { AllComponent } from './all/all.component';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
-  declarations: [AddComponent, AllComponent, DetailsComponent],
+  declarations: [AddComponent, AllComponent, DetailsComponent, EditComponent],
   imports: [
     CommonModule,
     FormsModule,
     ListingRoutingModule
   ],exports:[
-    [AddComponent,AllComponent]],
+    [AddComponent,AllComponent,DetailsComponent, EditComponent]],
 })
 export class ListingModule { }

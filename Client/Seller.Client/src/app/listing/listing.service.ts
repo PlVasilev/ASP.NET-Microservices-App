@@ -15,6 +15,7 @@ export class ListingService {
   private createPath = environment.apiUrl + '/listing/create'
   private getAllPath = environment.apiUrl + '/listing/all'
   private detailsPath = environment.apiUrl + '/listing/'
+  private updatePath = environment.apiUrl + '/listing/update'
 
   create(data): Observable<IListing>{
     return this.http.post<IListing>(this.createPath, data)
@@ -30,5 +31,9 @@ export class ListingService {
 
   delete(id){
     return this.http.delete(this.detailsPath + id)
+  }
+
+  edit(data): Observable<IListing>{
+    return this.http.put<IListing>(this.updatePath, data)
   }
 }
