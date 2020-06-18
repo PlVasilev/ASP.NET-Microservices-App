@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router, 
+    private toastrService: ToastrService) { }
 
   loginHandler(formValue) {
     this.userService.login(formValue).subscribe(data => {
-      console.log(data)
       this.userService.saveToken(data['userId'],data['token'],data['username'])
+      this.toastrService.success("Loging In")
       this.router.navigate([`/listing/all`])
     })
     // this.userService.login(data.username, data.password).then((result) => {

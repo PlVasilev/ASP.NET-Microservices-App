@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {ListingService } from '../listing.service'
 import { Router } from '@angular/router';
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'app-add',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddComponent {
 
-  constructor(private listingService: ListingService,private router: Router) { }
+  constructor(private tservice: ToastrService,private listingService: ListingService,private router: Router) { }
 
   @ViewChild('addListingForm', { static: true }) from: NgForm
 
