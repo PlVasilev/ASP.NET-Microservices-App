@@ -27,8 +27,8 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.listingService.details(this.activatedRoute.snapshot.params.id)
-      .subscribe(listings => {
-        this.selectedListing = listings
+      .subscribe(listing => {
+        this.selectedListing = listing
         this.userId = this.userService.getUserId()
         this.token = this.userService.getToken()
       });

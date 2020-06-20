@@ -10,7 +10,10 @@
         <a class="navbar-brand" routerLink="/listing/all">All Listings</a>
       </li>
       <li *ngIf="token"  class="nav-item">
-        <a class="navbar-brand" routerLink="/listing/add">Add Property</a>
+        <a class="navbar-brand" routerLink="/listing/add">Add Listing</a>
+      </li>
+      <li *ngIf="token"  class="nav-item">
+        <a class="navbar-brand" routerLink="/listing/mine">Mine Listings</a>
       </li>
     </ul>
     <ul class="navbar-nav mr-left">

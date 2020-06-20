@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ListingService } from '../listing.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { ListingService } from '../listing.service';
 import { IListing } from 'src/app/shared/Interfaces/IListing';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-all',
-  templateUrl: './all.component.html',
-  styleUrls: ['./all.component.css']
+  selector: 'app-mine',
+  templateUrl: './mine.component.html',
+  styleUrls: ['./mine.component.css']
 })
-export class AllComponent implements OnInit {
+export class MineComponent implements OnInit {
 
   listingId = null;
   allListings: Array<IListing>
@@ -17,16 +17,13 @@ export class AllComponent implements OnInit {
   constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
-       this.listingService.getListings().subscribe(listings => {
+       this.listingService.getMineListings().subscribe(listings => {
          this.allListings = listings
+         console.log(listings);
+         console.log(this.allListings);
+         
        });
   }
-
-  ngOnChange() {
-    this.listingService.getListings().subscribe(listings => {
-      this.allListings = listings
-    });
-}
 
   detailsIdHandler(listingId: string){
     this.router.navigate([`/listing/details/${listingId}`])

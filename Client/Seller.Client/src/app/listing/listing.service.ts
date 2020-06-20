@@ -14,6 +14,7 @@ export class ListingService {
 
   private createPath = environment.apiUrl + '/listing/create'
   private getAllPath = environment.apiUrl + '/listing/all'
+  private getMinePath = environment.apiUrl + '/listing/mine'
   private detailsPath = environment.apiUrl + '/listing/'
   private updatePath = environment.apiUrl + '/listing/update'
 
@@ -23,6 +24,10 @@ export class ListingService {
 
   getListings(): Observable<Array<IListing>>{
     return this.http.get<Array<IListing>>(this.getAllPath)
+  }
+
+  getMineListings(): Observable<Array<IListing>>{
+    return this.http.get<Array<IListing>>(this.getMinePath)
   }
 
   details(id): Observable<IListing>{

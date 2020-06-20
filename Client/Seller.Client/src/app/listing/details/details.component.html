@@ -22,16 +22,16 @@
                     <p>Posted on: {{selectedListing.created}}</p>
                     <p>Posted by: {{selectedListing.sellerName}}</p>
                     <p>Description: {{selectedListing.description}}</p>
-                   
+
                 </div>
             </div>
-            <div class="col-lg-12 ">
-                <p> <a *ngIf="token && userId != selectedListing.sellerId" class="btn btn-primary active"
-                    (click)="sendRequestHandler()">Send Reqest to view the property</a></p>
-            <p> <a *ngIf="token && userId == selectedListing.sellerId" routerLink="/listing/edit/{{selectedListing.id}}"
-                    class="btn btn-warning active">Edit</a></p>
-            <p> <a *ngIf="token && userId == selectedListing.sellerId"
-                    (click)="deleteHandler(selectedListing.id)" class="btn btn-danger active">Delete</a></p>
+            <div class="col-lg-12">
+                <p> <a *ngIf="token && userId != selectedListing.sellerId" 
+                        (click)="sendRequestHandler()" class="btn btn-primary active send-offer">Send Reqest to view the property</a></p>
+                <p> <a *ngIf="token && userId == selectedListing.sellerId"
+                        routerLink="/listing/edit/{{selectedListing.id}}" class="btn btn-warning active">Edit</a></p>
+                <p> <a *ngIf="token && userId == selectedListing.sellerId" (click)="deleteHandler(selectedListing.id)"
+                        class="btn btn-danger active">Delete</a></p>
             </div>
         </div>
     </div>

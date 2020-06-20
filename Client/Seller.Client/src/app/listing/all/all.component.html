@@ -9,10 +9,10 @@
 </div>
 <div *ngIf="searchInput.errors && searchInput.touched" class="invalid-feedback">You must have search input !</div>
 
-<div *ngIf="!allListings" class="listing-sections" id="properties-section">
+<div *ngIf="allListings.length == 0" class="listing-sections" id="properties-section">
     <h1>LOADING...</h1>
 </div>
-<div *ngIf="allListings" class="listing-sections" id="properties-section">
+<div *ngIf="allListings.length > 0" class="listing-sections" id="properties-section">
 
     <div class="container">
         <div class="search-text-error" *ngIf="!allListings">There are no objects with your search input !</div>
