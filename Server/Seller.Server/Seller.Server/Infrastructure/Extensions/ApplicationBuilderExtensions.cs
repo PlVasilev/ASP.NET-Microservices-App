@@ -1,5 +1,8 @@
 ﻿
 
+using System.Linq;
+using Microsoft.AspNetCore.Identity;
+
 namespace Seller.Server.Infrastructure.Extensions
 {
     using Data;
@@ -22,6 +25,16 @@ namespace Seller.Server.Infrastructure.Extensions
         public static void ApplyMigrations(this IApplicationBuilder app)
         {
             using var services = app.ApplicationServices.CreateScope();
+            var context = services.ServiceProvider.GetRequiredService<SellerDbContext>();
+            context.Database.EnsureCreated();
+
+            if (context.Roles.Count() <= 1)
+            {
+                context.Roles.Add(new IdentityRole() { Name = "Admin", NormalizedName = "ADMIN" });
+                context.Roles.Add(new IdentityRole() { Name = "User", NormalizedName = "USER" });
+                context.Roles.Add(new IdentityRole() { Name = "Guest", NormalizedName = "GUEST" });
+                context.SaveChanges();
+            }
 
             var dbContext = services.ServiceProvider.GetService<SellerDbContext>();
 

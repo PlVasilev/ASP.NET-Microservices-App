@@ -35,7 +35,10 @@
                 FirstName = model.FirstName,
                 LastName = model.LastName,
             };
+
             var result = await userManager.CreateAsync(user, model.Password);
+
+            await userManager.AddToRoleAsync(user, "User");
 
             if (result.Succeeded) return Ok();
             
