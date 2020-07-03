@@ -59,7 +59,7 @@
                 Description = l.Description,
                 OffersCount = l.Offers.Count(),
                 SellerId = l.SellerId,
-                SellerName = l.Seller.FirstName + " " + l.Seller.LastName,
+                SellerName = l.Seller.UserSS.FirstName + " " + l.Seller.UserSS.LastName,
                 Created = l.Created.ToString("D")
             }).FirstOrDefaultAsync();
 

@@ -27,22 +27,21 @@
         [Route(nameof(Register))]
         public async Task<ActionResult> Register(RegisterUserRequestModel model)
         {
-            var user = new User()
+            var user = await this.identityService.Register(model.Email, model.UserName, model.Password, model.PhoneNumber);
+
+            var userSS = new UserSS
             {
-                UserName = model.UserName,
-                Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                UserId = user.Id
             };
 
-            var result = await userManager.CreateAsync(user, model.Password);
+            var result = await identityService.CreateUserSS(model.FirstName, model.LastName, user.Id);
 
-            await userManager.AddToRoleAsync(user, "User");
 
-            if (result.Succeeded) return Ok();
+            if (result) return Ok();
             
-            return BadRequest(result.Errors);
+            return BadRequest();
         }
 
         [HttpPost]

@@ -10,7 +10,8 @@
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Deal> Deals { get; set; }
         public DbSet<Message> Messages { get; set; }
-       
+        public DbSet<UserSS> UserSSes { get; set; }
+
         public SellerDbContext(DbContextOptions<SellerDbContext> options)
             : base(options)
         {
@@ -38,13 +39,12 @@
                 .WithMany(s => s.Offers)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // foreach (var key in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            // {
-            //     key.DeleteBehavior = DeleteBehavior.Restrict;
-            // }
-
-
+            builder.Entity<UserSS>()
+                .HasOne(d => d.User)
+                .WithOne(u => u.UserSS)
+                .HasForeignKey<UserSS>(u => u.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seller.Server.Data;
 
 namespace Seller.Server.Data.Migrations
 {
     [DbContext(typeof(SellerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200703153325_Split_User_and_UserSS")]
+    partial class Split_User_and_UserSS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,14 +224,9 @@ namespace Seller.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserSSId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SellerId");
-
-                    b.HasIndex("UserSSId");
 
                     b.ToTable("Listings");
                 });
@@ -257,14 +254,9 @@ namespace Seller.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserSSId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SenderId");
-
-                    b.HasIndex("UserSSId");
 
                     b.ToTable("Messages");
                 });
@@ -295,16 +287,11 @@ namespace Seller.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserSSId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
 
                     b.HasIndex("ListingId");
-
-                    b.HasIndex("UserSSId");
 
                     b.ToTable("Offers");
                 });
@@ -476,34 +463,26 @@ namespace Seller.Server.Data.Migrations
 
             modelBuilder.Entity("Seller.Server.Data.Models.Listing", b =>
                 {
-                    b.HasOne("Seller.Server.Data.Models.User", "Seller")
-                        .WithMany()
+                    b.HasOne("Seller.Server.Data.Models.UserSS", "Seller")
+                        .WithMany("Listings")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Seller.Server.Data.Models.UserSS", null)
-                        .WithMany("Listings")
-                        .HasForeignKey("UserSSId");
                 });
 
             modelBuilder.Entity("Seller.Server.Data.Models.Message", b =>
                 {
-                    b.HasOne("Seller.Server.Data.Models.User", "Sender")
-                        .WithMany()
+                    b.HasOne("Seller.Server.Data.Models.UserSS", "Sender")
+                        .WithMany("Messages")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Seller.Server.Data.Models.UserSS", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserSSId");
                 });
 
             modelBuilder.Entity("Seller.Server.Data.Models.Offer", b =>
                 {
-                    b.HasOne("Seller.Server.Data.Models.User", "Creator")
-                        .WithMany()
+                    b.HasOne("Seller.Server.Data.Models.UserSS", "Creator")
+                        .WithMany("Offers")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -513,10 +492,6 @@ namespace Seller.Server.Data.Migrations
                         .HasForeignKey("ListingId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Seller.Server.Data.Models.UserSS", null)
-                        .WithMany("Offers")
-                        .HasForeignKey("UserSSId");
                 });
 
             modelBuilder.Entity("Seller.Server.Data.Models.UserSS", b =>

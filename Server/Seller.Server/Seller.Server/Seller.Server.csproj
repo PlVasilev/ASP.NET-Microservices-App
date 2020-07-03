@@ -60,6 +60,14 @@
     <Compile Remove="Data\Migrations\20200610215924_Added_Deals_Listings_Messages_Offers_DBSets_7.Designer.cs" />
     <Compile Remove="Data\Migrations\20200610220813_Added_Deals_Listings_Messages_Offers_DBSets.cs" />
     <Compile Remove="Data\Migrations\20200610220813_Added_Deals_Listings_Messages_Offers_DBSets.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200703162342_Split_User_and_UserSS_2.cs" />
+    <Compile Remove="Data\Migrations\20200703162342_Split_User_and_UserSS_2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200703163007_Split_User_and_UserSS_3.cs" />
+    <Compile Remove="Data\Migrations\20200703163007_Split_User_and_UserSS_3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200703163102_Split_User_and_UserSS_3.cs" />
+    <Compile Remove="Data\Migrations\20200703163102_Split_User_and_UserSS_3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200703163237_Split_User_and_UserSS_4.cs" />
+    <Compile Remove="Data\Migrations\20200703163237_Split_User_and_UserSS_4.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
