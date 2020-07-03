@@ -51,7 +51,7 @@ export class UserService implements OnInit{
   }
 
   logout() {
-    localStorage.removeItem('id')
+    localStorage.removeItem('userId')
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     this.userId = null;

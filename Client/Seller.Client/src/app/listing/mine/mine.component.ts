@@ -17,11 +17,9 @@ export class MineComponent implements OnInit {
   constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
+        this.allListings = new Array();
        this.listingService.getMineListings().subscribe(listings => {
-         this.allListings = listings
-         console.log(listings);
-         console.log(this.allListings);
-         
+        this.allListings = listings
        });
   }
 
