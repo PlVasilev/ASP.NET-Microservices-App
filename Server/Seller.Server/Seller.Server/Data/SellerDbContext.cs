@@ -10,7 +10,7 @@
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Deal> Deals { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<UserSS> UserSSes { get; set; }
+        public DbSet<UserSeller> UserSellers { get; set; }
 
         public SellerDbContext(DbContextOptions<SellerDbContext> options)
             : base(options)
@@ -39,10 +39,10 @@
                 .WithMany(s => s.Offers)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<UserSS>()
+            builder.Entity<UserSeller>()
                 .HasOne(d => d.User)
-                .WithOne(u => u.UserSS)
-                .HasForeignKey<UserSS>(u => u.UserId)
+                .WithOne(u => u.UserSeller)
+                .HasForeignKey<UserSeller>(u => u.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 

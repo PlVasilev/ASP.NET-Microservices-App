@@ -21,12 +21,12 @@
 
         [Required]
         public string SellerId { get; set; }
-        public UserSS Seller { get; set; }
+        public UserSeller Seller { get; set; }
 
 
         [Required]
         public string BuyerId { get; set; }
-        public UserSS Buyer { get; set; }
+        public UserSeller Buyer { get; set; }
 
         public bool IsDeleted { get; set; } 
 

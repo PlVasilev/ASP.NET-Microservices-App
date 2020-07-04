@@ -29,15 +29,7 @@
         {
             var user = await this.identityService.Register(model.Email, model.UserName, model.Password, model.PhoneNumber);
 
-            var userSS = new UserSS
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                UserId = user.Id
-            };
-
-            var result = await identityService.CreateUserSS(model.FirstName, model.LastName, user.Id);
-
+            var result = await identityService.CreateUserSeller(model.FirstName, model.LastName, user.Id);
 
             if (result) return Ok();
             

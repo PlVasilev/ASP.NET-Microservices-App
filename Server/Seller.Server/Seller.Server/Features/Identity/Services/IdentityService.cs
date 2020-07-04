@@ -1,10 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Seller.Server.Data;
-using Seller.Server.Data.Models;
-
-namespace Seller.Server.Features.Identity.Services
+﻿namespace Seller.Server.Features.Identity.Services
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
@@ -12,6 +6,11 @@ namespace Seller.Server.Features.Identity.Services
     using System.Text;
     using Microsoft.IdentityModel.Tokens;
     using Interfaces;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
+    using Data;
+    using Data.Models;
     public class IdentityService : IIdentityService
     {
         private const string InvalidErrorMessage = "Invalid credentials.";
@@ -25,10 +24,10 @@ namespace Seller.Server.Features.Identity.Services
             this.context = context;
         }
 
-        public async Task<bool> CreateUserSS(string firstName, string lastName, string userId)
+        public async Task<bool> CreateUserSeller(string firstName, string lastName, string userId)
         {
 
-            var userSS = new Data.Models.UserSS
+            var userSeller = new UserSeller
             {
                 Id = Guid.NewGuid().ToString(),
                 FirstName = firstName,
@@ -36,7 +35,7 @@ namespace Seller.Server.Features.Identity.Services
                 UserId = userId
             };
 
-            context.Add(userSS);
+            context.Add(userSeller);
             int result = await context.SaveChangesAsync();
 
             if (result == 0) return false;
@@ -53,6 +52,11 @@ namespace Seller.Server.Features.Identity.Services
             };
 
             await this.userManager.CreateAsync(user, password);
+
+            if (userManager.Users.Count() == 1)
+            {
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
 
             await userManager.AddToRoleAsync(user, "User");
 

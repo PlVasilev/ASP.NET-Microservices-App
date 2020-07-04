@@ -7,6 +7,6 @@ namespace Seller.Server.Features.Identity.Services.Interfaces
     {
         string GenerateJwtToken(string userId, string userName, string secret);
         Task<User> Register(string email, string username, string password, string phoneNumber);
-        Task<bool> CreateUserSS(string firstName, string lastName, string userId);
+        Task<bool> CreateUserSeller(string firstName, string lastName, string userId);
     }
 }
