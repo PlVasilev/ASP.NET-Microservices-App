@@ -46,6 +46,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.listingService.details(this.activatedRoute.snapshot.params.id)
     .subscribe(listings => {
+      this.listingService.setCurrentListingSeller(listings.sellerId);
       this.selectedListing = listings
       this.userId = this.userService.getUserId()
       this.token = this.userService.getToken()

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from "../../environments/environment"
@@ -11,6 +11,7 @@ import { IListing } from '../shared/Interfaces/IListing';
 export class ListingService {
 
   constructor(private http:HttpClient, private userService: UserService) { }
+ 
 
   private createPath = environment.listingsApiUrl + 'listing/create'
   private getAllPath = environment.listingsApiUrl + 'listing/all'
@@ -18,6 +19,14 @@ export class ListingService {
   private detailsPath = environment.listingsApiUrl + 'listing/'
   private updatePath = environment.listingsApiUrl + 'listing/update'
 
+  setCurrentListingSeller(sellerId){
+    localStorage.setItem('currentListingSeller', sellerId)
+  }
+
+  getCurrentListingSeller(){
+    return localStorage.getItem('currentListingSeller');
+  }
+  
   create(data): Observable<IListing>{
     return this.http.post<IListing>(this.createPath, data)
   }
@@ -31,7 +40,7 @@ export class ListingService {
   }
 
   details(id): Observable<IListing>{
-    return this.http.get<IListing>(this.detailsPath + id)
+    return this.http.get<IListing>(this.detailsPath + id);
   }
 
   delete(id){
