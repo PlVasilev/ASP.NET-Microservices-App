@@ -21,21 +21,9 @@ export class LoginComponent {
       this.userService.getSellerId().subscribe(res => {   
         this.userService.saveSellerId(res['id'])
         this.toastrService.success("Loging In")
-        this.router.navigate([`/listing/all`]).then(() => {
-           window.location.reload();
-        });
+        this.router.navigate([`/listing/all`])
       })
     })
-    // this.userService.login(data.username, data.password).then((result) => {
-    //   if(result == true){
-    //     this.notifier.notify("success", "You have Logged in!");
-    //     this.from.reset();
-    //   }else{
-    //     this.notifier.notify("error", "Wrong Username or Password!");
-    //   }
-    // }).catch((error) => {
-    //   this.notifier.notify("warning", "There was a problem with the site please try again Later!");
-    // })  
   }
 
 }

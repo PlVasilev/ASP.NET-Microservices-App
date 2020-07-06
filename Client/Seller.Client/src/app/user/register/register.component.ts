@@ -31,12 +31,8 @@ export class RegisterComponent {
           this.userService.saveSellerId(res['id'])
         })
         this.toastrService.success("Registered")
-        this.router.navigate([`/listing/all`]).then(() =>
-          window.location.reload()
-        )
-
+        this.router.navigate([`/listing/all`])
       })
     })
   }
-
 }

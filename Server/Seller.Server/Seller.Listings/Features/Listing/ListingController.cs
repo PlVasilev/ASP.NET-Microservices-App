@@ -1,4 +1,5 @@
-﻿using Seller.Shared;
+﻿using Seller.Listings.Features.Seller.Services.Interfaces;
+using Seller.Shared;
 using Seller.Shared.Controllers;
 using Seller.Shared.Services.Identity;
 
@@ -17,11 +18,13 @@ namespace Seller.Listings.Features.Listing
 
         private readonly IListingService listingService;
         private readonly ICurrentUserService currentUser;
+        private readonly ISellerService sellerService;
 
-        public ListingController(IListingService listingService, ICurrentUserService currentUser)
+        public ListingController(IListingService listingService, ICurrentUserService currentUser, ISellerService sellerService)
         {
             this.listingService = listingService;
             this.currentUser = currentUser;
+            this.sellerService = sellerService;
         }
 
  
@@ -65,7 +68,7 @@ namespace Seller.Listings.Features.Listing
         public async Task<ActionResult<ListingCreateResponseModel>> Create(ListingCreateRequestModel model) => await 
             listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, UserId());
 
-        private string UserId() => currentUser.UserId;
+        private string UserId() => sellerService.GetIdByUser(currentUser.UserId).Result.Id;
 
     }
 }

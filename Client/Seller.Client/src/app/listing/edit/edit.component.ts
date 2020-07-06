@@ -39,6 +39,8 @@ export class EditComponent implements OnInit {
     this.listingService.edit(data).subscribe(res => {
     });
     this.from.reset();
-    this.router.navigate(['listing/all']);
+    this.router.navigate(['listing/mine']).then(() => {
+      window.location.reload();
+   });;
   }
 }
