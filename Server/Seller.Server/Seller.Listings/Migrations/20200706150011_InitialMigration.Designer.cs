@@ -10,8 +10,8 @@ using Seller.Listings.Data;
 namespace Seller.Listings.Migrations
 {
     [DbContext(typeof(ListingsDbContext))]
-    [Migration("20200704180526_InitalListingsMigration")]
-    partial class InitalListingsMigration
+    [Migration("20200706150011_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,44 +133,6 @@ namespace Seller.Listings.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Offer", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ListingId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserSellerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ListingId");
-
-                    b.HasIndex("UserSellerId");
-
-                    b.ToTable("Offers");
-                });
-
             modelBuilder.Entity("Seller.Listings.Data.Models.UserSeller", b =>
                 {
                     b.Property<string>("Id")
@@ -241,19 +203,6 @@ namespace Seller.Listings.Migrations
                 {
                     b.HasOne("Seller.Listings.Data.Models.UserSeller", null)
                         .WithMany("Messages")
-                        .HasForeignKey("UserSellerId");
-                });
-
-            modelBuilder.Entity("Seller.Listings.Data.Models.Offer", b =>
-                {
-                    b.HasOne("Seller.Listings.Data.Models.Listing", "Listing")
-                        .WithMany("Offers")
-                        .HasForeignKey("ListingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", null)
-                        .WithMany("Offers")
                         .HasForeignKey("UserSellerId");
                 });
 #pragma warning restore 612, 618

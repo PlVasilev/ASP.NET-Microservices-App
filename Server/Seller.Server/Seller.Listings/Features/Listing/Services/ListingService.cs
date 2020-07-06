@@ -57,7 +57,7 @@
                 ImageUrl = l.ImageUrl,
                 Price = l.Price,
                 Description = l.Description,
-                OffersCount = l.Offers.Count(),
+                OffersCount = 0,
                 SellerId = l.SellerId,
                 SellerName = l.Seller.FirstName + " " + l.Seller.LastName,
                 Created = l.Created.ToString("D")

@@ -1,20 +1,17 @@
-﻿using Seller.Listings.Features.Seller.Services;
-using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Listings.Infrastructure.Filters;
-
-namespace Seller.Listings.Infrastructure.Extensions
+﻿namespace Seller.Offers.Infrastructure.Extensions
 {
-    using Features.Listing.Services;
-    using Features.Listing.Services.Interfaces;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
+    using Features.Services;
+    using Features.Services.Interfaces;
+    using Filters;
 
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services) => services
-            .AddTransient<ISellerService, SellerService>()
-            .AddTransient<IListingService, ListingService>();
-          
+            .AddTransient<IOfferService, OfferService>();
+
+
 
         public static IServiceCollection AddSwagger(this IServiceCollection services) => services
             .AddSwaggerGen(c =>

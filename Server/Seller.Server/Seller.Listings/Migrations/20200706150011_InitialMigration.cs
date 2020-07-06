@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Seller.Listings.Migrations
 {
-    public partial class InitalListingsMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -108,36 +108,6 @@ namespace Seller.Listings.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Offers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    ListingId = table.Column<string>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    UserSellerId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Offers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Offers_Listings_ListingId",
-                        column: x => x.ListingId,
-                        principalTable: "Listings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Offers_UserSellers_UserSellerId",
-                        column: x => x.UserSellerId,
-                        principalTable: "UserSellers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Deals_BuyerId",
                 table: "Deals",
@@ -163,16 +133,6 @@ namespace Seller.Listings.Migrations
                 name: "IX_Messages_UserSellerId",
                 table: "Messages",
                 column: "UserSellerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Offers_ListingId",
-                table: "Offers",
-                column: "ListingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Offers_UserSellerId",
-                table: "Offers",
-                column: "UserSellerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -182,9 +142,6 @@ namespace Seller.Listings.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
-
-            migrationBuilder.DropTable(
-                name: "Offers");
 
             migrationBuilder.DropTable(
                 name: "Listings");

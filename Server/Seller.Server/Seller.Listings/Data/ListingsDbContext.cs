@@ -7,7 +7,6 @@ namespace Seller.Listings.Data
     public class ListingsDbContext : DbContext
     {
         public DbSet<Listing> Listings { get; set; }
-        public DbSet<Offer> Offers { get; set; }
         public DbSet<Deal> Deals { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<UserSeller> UserSellers { get; set; }
@@ -34,12 +33,6 @@ namespace Seller.Listings.Data
                 .HasOne(u => u.Buyer)
                 .WithMany(s => s.BuyDeals)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Offer>()
-                .HasOne(u => u.Listing)
-                .WithMany(s => s.Offers)
-                .OnDelete(DeleteBehavior.Restrict);
-
 
             base.OnModelCreating(builder);
         }

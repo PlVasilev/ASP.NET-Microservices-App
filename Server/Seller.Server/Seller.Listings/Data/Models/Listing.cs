@@ -24,8 +24,6 @@
         public string DealId { get; set; }
         public Deal Deal { get; set; } 
 
-        public IEnumerable<Offer> Offers { get; set; } = new List<Offer>();
-
         [Required]
         public string SellerId { get; set; }
 
