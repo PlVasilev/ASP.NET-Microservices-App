@@ -9,7 +9,7 @@ import { UserService } from './user/user.service';
 import { ListingModule } from './listing/listing.module';
 import { ListingService } from './listing/listing.service';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
-import { ErrorInterceptorService } from './shared/services/error-interceptor.service'; // "ngx-toastr": "^12.1.0",  // //"node_modules/ngx-toastr/toastr.css
+import { ErrorInterceptorService } from './shared/services/error-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 

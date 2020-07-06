@@ -14,8 +14,10 @@ export class UserService implements OnInit{
 
   constructor(private http:HttpClient) { }
 
-  private loginPath = environment.apiUrl + '/identity/login'
-  private registerPath = environment.apiUrl + '/identity/register'
+  private loginPath = environment.identityApiUrl + 'identity/login'
+  private registerPath = environment.identityApiUrl + 'identity/register'
+  private createSellerPath = environment.listingsApiUrl + 'seller/create'
+  private getSellerIdPath = environment.listingsApiUrl + 'seller/id'
 
   ngOnInit(){
     this.userId = this.getUserId()
@@ -32,11 +34,22 @@ export class UserService implements OnInit{
     return this.http.post(this.registerPath, data)
   }
 
-  saveToken(userId, token, username){
-    localStorage.setItem('userId', userId)
+  getSellerId() : Observable<any> {
+    return this.http.get(this.getSellerIdPath);
+}
+
+  saveToken( token, username){
     localStorage.setItem('token', token)
     localStorage.setItem('username', username)
   }
+
+  saveSellerId(userId){
+    localStorage.setItem('userId', userId)
+  }
+
+  createSeller(data) : Observable<any> {
+    return this.http.post(this.createSellerPath, data);
+}
 
   getUserId(){
     return localStorage.getItem('userId');

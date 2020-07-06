@@ -12,11 +12,11 @@ export class ListingService {
 
   constructor(private http:HttpClient, private userService: UserService) { }
 
-  private createPath = environment.apiUrl + '/listing/create'
-  private getAllPath = environment.apiUrl + '/listing/all'
-  private getMinePath = environment.apiUrl + '/listing/mine'
-  private detailsPath = environment.apiUrl + '/listing/'
-  private updatePath = environment.apiUrl + '/listing/update'
+  private createPath = environment.listingsApiUrl + 'listing/create'
+  private getAllPath = environment.listingsApiUrl + 'listing/all'
+  private getMinePath = environment.listingsApiUrl + 'listing/mine'
+  private detailsPath = environment.listingsApiUrl + 'listing/'
+  private updatePath = environment.listingsApiUrl + 'listing/update'
 
   create(data): Observable<IListing>{
     return this.http.post<IListing>(this.createPath, data)

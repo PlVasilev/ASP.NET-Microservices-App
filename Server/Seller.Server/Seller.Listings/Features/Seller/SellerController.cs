@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Seller.Listings.Features.Seller.Models;
 using Seller.Listings.Features.Seller.Services.Interfaces;
+using Seller.Listings.Features.Seller.Services.Models;
 using Seller.Shared.Controllers;
 using Seller.Shared.Services.Identity;
 
@@ -22,7 +23,7 @@ namespace Seller.Listings.Features.Seller
 
         [HttpGet]
         [Route("Id")]
-        public async Task<ActionResult<string>> GetSellerId() => await sellerService.GetIdByUser(currentUser.UserId);
+        public async Task<ActionResult<SellerIdResponseModel>> GetSellerId() => await sellerService.GetIdByUser(currentUser.UserId);
 
 
 

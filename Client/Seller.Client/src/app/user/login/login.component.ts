@@ -17,9 +17,14 @@ export class LoginComponent {
 
   loginHandler(formValue) {
     this.userService.login(formValue).subscribe(data => {
-      this.userService.saveToken(data['userId'],data['token'],data['username'])
-      this.toastrService.success("Loging In")
-      this.router.navigate([`/listing/all`])
+      this.userService.saveToken(data['token'],data['username'])
+      this.userService.getSellerId().subscribe(res => {   
+        this.userService.saveSellerId(res['id'])
+        this.toastrService.success("Loging In")
+        this.router.navigate([`/listing/all`]).then(() => {
+           window.location.reload();
+        });
+      })
     })
     // this.userService.login(data.username, data.password).then((result) => {
     //   if(result == true){

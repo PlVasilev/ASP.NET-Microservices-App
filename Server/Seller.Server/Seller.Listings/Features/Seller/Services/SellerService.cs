@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Seller.Listings.Data;
 using Seller.Listings.Data.Models;
 using Seller.Listings.Features.Seller.Services.Interfaces;
+using Seller.Listings.Features.Seller.Services.Models;
 using Seller.Shared.Services.Identity;
 
 namespace Seller.Listings.Features.Seller.Services
@@ -40,11 +41,11 @@ namespace Seller.Listings.Features.Seller.Services
             return true;
         }
 
-        public async Task<string> GetIdByUser(string userId)
+        public async Task<SellerIdResponseModel> GetIdByUser(string userId)
         {
           var user = await context.UserSellers.FirstOrDefaultAsync(x => x.UserId == userId);
 
-          return user.Id;
+          return new SellerIdResponseModel {Id = user.Id};
         }
             
     }
