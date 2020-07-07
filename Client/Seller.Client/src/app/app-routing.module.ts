@@ -5,6 +5,7 @@ import { LandingComponent } from './core/landing/landing.component';
 import { NotAuthorizedComponent } from './core/not-authorized/not-authorized.component';
 import { EditComponent } from './listing/edit/edit.component';
 import { AuthGuard } from './auth.guard';
+import { AllComponent } from './offer/all/all.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,14 @@ const routes: Routes = [
     pathMatch: 'full',
     component: LandingComponent
   },
+  {
+    path: 'listing/details/:id/offer/all',
+    component: AllComponent,
+    canActivate: [AuthGuard],
+    data: {
+        isYours: true  
+    }
+},
   {
     path: 'listing/edit/:id',
     component: EditComponent,

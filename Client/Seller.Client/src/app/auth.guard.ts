@@ -24,8 +24,6 @@ export class AuthGuard implements CanActivate {
         if(this.userService.getUsername() === "admin") {
           this.isAdmin = true;
         }
-        console.log(this.lisgingService.getCurrentListingSeller());
-        console.log(this.userService.getUserId())
         if(this.lisgingService.getCurrentListingSeller() === this.userService.getUserId()){
           this.isYours = true;
         }

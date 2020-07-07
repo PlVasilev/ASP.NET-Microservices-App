@@ -31,12 +31,12 @@ namespace Seller.Offers.Features.Offer
             await offerService.GetCurrentOffer(model.CreatorId, model.ListingId);
 
         [HttpGet]
-        [Route(nameof(All))]
-        public async Task<ActionResult<List<OfferResponceModel>>> All(string listingId) =>
-            await offerService.All(listingId);
+        [Route("{id}")]
+        public async Task<ActionResult<List<OfferResponceModel>>> All(string id) =>
+            await offerService.All(id);
 
-        [HttpPut]
-        [Route(nameof(Accept))]
+        [HttpGet]
+        [Route("accept/{id}")]
         public async Task<ActionResult<bool>> Accept(string id) =>
             await offerService.Accept(id);
     }
