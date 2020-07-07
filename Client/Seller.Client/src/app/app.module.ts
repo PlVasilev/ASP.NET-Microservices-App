@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { UserService } from './user/user.service';
 import { ListingModule } from './listing/listing.module';
 import { ListingService } from './listing/listing.service';
+import { OfferModule } from './offer/offer.module';
+import { OfferService } from './offer/offer.service';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 import { ErrorInterceptorService } from './shared/services/error-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,12 +26,14 @@ import { ToastrModule } from 'ngx-toastr';
     CoreModule,
     UserModule,
     ListingModule,
+    OfferModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [
     UserService,
     ListingService,
+    OfferService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

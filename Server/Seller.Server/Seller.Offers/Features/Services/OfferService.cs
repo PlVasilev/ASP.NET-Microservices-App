@@ -83,20 +83,16 @@
            return result != 0;
         }
 
-        public async Task<OfferResponceModel> GetCurrentOffer(string creatorId, string listingId)
+        public async Task<decimal> GetCurrentOffer(string creatorId, string listingId)
         {
             var offer = await context.Offers.FirstOrDefaultAsync(x =>
                 x.CreatorId == creatorId && x.ListingId == listingId && x.IsAccepted == false);
-           
-            return new OfferResponceModel()
+            if (offer == null)
             {
-                Id = offer.Id,
-                CreatorId = offer.CreatorId,
-                Created = offer.Created.ToString("g"),
-                ListingId = offer.ListingId,
-                Price = offer.Price,
-                IsAccepted = offer.IsAccepted
-            };
+                return 0;
+            }
+
+            return offer.Price;
         }
     }
 }

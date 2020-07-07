@@ -21,14 +21,14 @@ namespace Seller.Offers.Features.Offer
 
         [HttpPost]
         [Route(nameof(Add))]
-        public async Task<ActionResult<OfferResponceModel>> Add(decimal price, string creatorId, string listingId) =>
-            await offerService.Add(price, creatorId, listingId);
+        public async Task<ActionResult<OfferResponceModel>> Add(OfferAddRequestModel model) =>
+            await offerService.Add(model.Price, model.CreatorId, model.ListingId);
 
 
         [HttpPost]
         [Route(nameof(GetCurrentOffer))]
-        public async Task<ActionResult<OfferResponceModel>> GetCurrentOffer(string creatorId, string listingId) =>
-            await offerService.GetCurrentOffer(creatorId, listingId);
+        public async Task<ActionResult<decimal>> GetCurrentOffer(OfferCurrentRequestModel model) =>
+            await offerService.GetCurrentOffer(model.CreatorId, model.ListingId);
 
         [HttpGet]
         [Route(nameof(All))]

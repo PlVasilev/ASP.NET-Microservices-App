@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   identityApiUrl: "https://localhost:5003/",
+  offersApiUrl: "https://localhost:5005/",
   listingsApiUrl: "https://localhost:5001/"
 };
 /*

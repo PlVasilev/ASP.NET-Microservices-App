@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListingService } from '../listing.service';
 import { UserService } from 'src/app/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IListing } from 'src/app/shared/Interfaces/IListing';
+import { IOffer } from 'src/app/shared/Interfaces/IOffer';
+import { OfferService } from 'src/app/offer/offer.service';
 
 @Component({
   selector: 'app-details',
@@ -13,45 +16,46 @@ export class DetailsComponent implements OnInit {
 
   selectedListing: IListing;
   token: string;
-  userId: string
+  userId: string;
+  offerSize: Number;
+  currnetOffer: IOffer;
 
   constructor(
-    private listingService: ListingService, 
+    private listingService: ListingService,
+    private offerService: OfferService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-    ) { }
+  ) { }
 
-  deleteHandler(id: string){
+  @ViewChild('addOfferForm', { static: true }) from: NgForm
+
+  deleteHandler(id: string) {
     this.listingService.delete(id).subscribe(res => {
       this.router.navigate(['listing/all']);
     })
   }
 
-  sendRequestHandler(){
-  //   var currentRequest: IRequest;
-  //   var date = new Date();
-  //   currentRequest = {
-  //     requestedOn: date.getTime(),
-  //     name: this.selectedListing.title,
-  //     requestedBy: this.userServiceLH.user.username,
-  //     email: this.userServiceLH.user.email,
-  //     postedBy: this.selectedListing.postedBy   
-  //   };
-  //  // console.log(currentRequest);
-    
-  //  this.userServiceLH.saveRequest(currentRequest)
+  addOffertHandler(data) {
+    const offerData = {price: data['price'], creatorId: this.userId, listingId: this.selectedListing.id }
+    console.log(offerData);  
+    this.offerService.addOffer(offerData)
+    .subscribe(res=>{
+      window.location.reload();
+    })
   }
 
   ngOnInit() {
     this.listingService.details(this.activatedRoute.snapshot.params.id)
-    .subscribe(listings => {
-      this.listingService.setCurrentListingSeller(listings.sellerId);
-      this.selectedListing = listings
-      this.userId = this.userService.getUserId()
-      this.token = this.userService.getToken()
-    });
+      .subscribe(listings => {
+        this.listingService.setCurrentListingSeller(listings.sellerId);
+        this.selectedListing = listings
+        this.userId = this.userService.getUserId()
+        this.token = this.userService.getToken()
+        const currentOfferData = {creatorId: this.userId, listingId: this.selectedListing.id }
+        this.offerService.getCuurentOffer(currentOfferData).subscribe(res => {
+          this.offerSize = res;
+        })
+      });
   }
-
-  
 }

@@ -2,7 +2,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from "../../environments/environment"
-import { UserService } from '../user/user.service';
 import { IListing } from '../shared/Interfaces/IListing';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { IListing } from '../shared/Interfaces/IListing';
 })
 export class ListingService {
 
-  constructor(private http:HttpClient, private userService: UserService) { }
+  constructor(private http:HttpClient) { }
  
 
   private createPath = environment.listingsApiUrl + 'listing/create'

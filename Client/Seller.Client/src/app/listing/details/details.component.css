@@ -1,5 +1,11 @@
 .property-details{
-    padding-top: 2rem;
+    padding-top: 0rem;
+}
+p.your-offer{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0050a5;
+    
 }
 
 p{
