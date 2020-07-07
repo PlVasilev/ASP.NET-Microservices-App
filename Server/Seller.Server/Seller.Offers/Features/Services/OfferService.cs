@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-
-namespace Seller.Offers.Features.Services
+﻿namespace Seller.Offers.Features.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Threading.Tasks;
     using Seller.Offers.Data.Models;
-    using Microsoft.AspNetCore.Mvc;
     using Data;
     using Models;
     using Interfaces;
@@ -34,7 +32,7 @@ namespace Seller.Offers.Features.Services
             }
             else
             {
-                var newOffer = new Offer
+                 offer = new Offer
                 {
                     Id = Guid.NewGuid().ToString(),
                     CreatorId = creatorId,
@@ -43,7 +41,7 @@ namespace Seller.Offers.Features.Services
                     ListingId = listingId,
                     IsAccepted = false
                 };
-                context.Add(newOffer);
+                context.Add(offer);
             }
 
             await context.SaveChangesAsync();
@@ -76,13 +74,30 @@ namespace Seller.Offers.Features.Services
         {
            var offer = await context.Offers.FirstOrDefaultAsync(x => x.Id == id);
 
+           offer.IsAccepted = true;
+
            context.Offers.Update(offer);
 
            var result = await context.SaveChangesAsync();
 
            return result != 0;
-        } 
-       
+        }
+
+        public async Task<OfferResponceModel> GetCurrentOffer(string creatorId, string listingId)
+        {
+            var offer = await context.Offers.FirstOrDefaultAsync(x =>
+                x.CreatorId == creatorId && x.ListingId == listingId && x.IsAccepted == false);
+           
+            return new OfferResponceModel()
+            {
+                Id = offer.Id,
+                CreatorId = offer.CreatorId,
+                Created = offer.Created.ToString("g"),
+                ListingId = offer.ListingId,
+                Price = offer.Price,
+                IsAccepted = offer.IsAccepted
+            };
+        }
     }
 }
 

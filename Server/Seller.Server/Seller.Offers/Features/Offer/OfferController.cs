@@ -25,6 +25,11 @@ namespace Seller.Offers.Features.Offer
             await offerService.Add(price, creatorId, listingId);
 
 
+        [HttpPost]
+        [Route(nameof(GetCurrentOffer))]
+        public async Task<ActionResult<OfferResponceModel>> GetCurrentOffer(string creatorId, string listingId) =>
+            await offerService.GetCurrentOffer(creatorId, listingId);
+
         [HttpGet]
         [Route(nameof(All))]
         public async Task<ActionResult<List<OfferResponceModel>>> All(string listingId) =>
