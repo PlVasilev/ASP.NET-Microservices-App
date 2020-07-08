@@ -9,7 +9,7 @@ namespace Seller.Messages.Features.Message
     using Microsoft.AspNetCore.Authorization;
     using Shared.Controllers;
 
-    [Authorize]
+  
     public class MessageController : ApiController
     {
         private readonly IMessageService messageService;
@@ -19,16 +19,19 @@ namespace Seller.Messages.Features.Message
             this.messageService = messageService;
         }
 
+        [Authorize]
         [HttpPost]
         [Route(nameof(Add))]
         public async Task<ActionResult<bool>> Add(MessageRequestModel model) =>
             await messageService.Add(model.SenderId, model.SenderUsername, model.Title, model.Content);
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route(nameof(All))]
         public async Task<ActionResult<List<MessageResponseModel>>> All() =>
             await messageService.All();
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("process/{id}")]
         public async Task<ActionResult<bool>> Process(string id) =>
