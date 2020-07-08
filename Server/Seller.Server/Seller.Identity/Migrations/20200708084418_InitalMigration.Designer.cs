@@ -10,8 +10,8 @@ using Seller.Identity.Data;
 namespace Seller.Identity.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20200706145959_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200708084418_InitalMigration")]
+    partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Seller.Offers.Features.Models;
-using Seller.Offers.Features.Services.Interfaces;
+using Seller.Offers.Features.Offer.Models;
+using Seller.Offers.Features.Offer.Services.Interfaces;
 using Seller.Shared.Controllers;
-using Seller.Shared.Services.Identity;
 
 namespace Seller.Offers.Features.Offer
 {

@@ -1,4 +1,4 @@
-﻿namespace Seller.Offers.Features.Services
+﻿namespace Seller.Offers.Features.Offer.Services
 {
     using System.Collections.Generic;
     using System.Linq;

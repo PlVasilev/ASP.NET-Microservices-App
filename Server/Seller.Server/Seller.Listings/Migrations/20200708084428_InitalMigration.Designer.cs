@@ -10,8 +10,8 @@ using Seller.Listings.Data;
 namespace Seller.Listings.Migrations
 {
     [DbContext(typeof(ListingsDbContext))]
-    [Migration("20200708064843_AddedIsAcceptedPropToListing")]
-    partial class AddedIsAcceptedPropToListing
+    [Migration("20200708084428_InitalMigration")]
+    partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,6 @@ namespace Seller.Listings.Migrations
                     b.Property<string>("BuyerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -82,6 +79,9 @@ namespace Seller.Listings.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeal")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -101,39 +101,6 @@ namespace Seller.Listings.Migrations
                     b.HasIndex("SellerId");
 
                     b.ToTable("Listings");
-                });
-
-            modelBuilder.Entity("Seller.Listings.Data.Models.Message", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserSellerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserSellerId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Seller.Listings.Data.Models.UserSeller", b =>
@@ -200,13 +167,6 @@ namespace Seller.Listings.Migrations
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Seller.Listings.Data.Models.Message", b =>
-                {
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserSellerId");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,7 +8,6 @@ namespace Seller.Listings.Data
     {
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Deal> Deals { get; set; }
-        public DbSet<Message> Messages { get; set; }
         public DbSet<UserSeller> UserSellers { get; set; }
 
         public ListingsDbContext(DbContextOptions<ListingsDbContext> options)

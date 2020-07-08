@@ -1,4 +1,4 @@
-﻿namespace Seller.Offers.Features.Services.Interfaces
+﻿namespace Seller.Offers.Features.Offer.Services.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

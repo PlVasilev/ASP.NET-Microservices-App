@@ -1,16 +1,15 @@
-﻿
-
-namespace Seller.Offers.Infrastructure.Extensions
+﻿namespace Seller.Messages.Infrastructure.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
     using Filters;
-    using Features.Offer.Services;
-    using Features.Offer.Services.Interfaces;
+    using Features.Message.Services;
+    using Features.Message.Services.Interfaces;
+
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services) => services
-            .AddTransient<IOfferService, OfferService>();
+            .AddTransient<IMessageService, MessageService>();
 
 
 

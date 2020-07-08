@@ -1,4 +1,4 @@
-﻿namespace Seller.Offers.Features.Models
+﻿namespace Seller.Offers.Features.Offer.Models
 {
     public class OfferResponceModel
     {

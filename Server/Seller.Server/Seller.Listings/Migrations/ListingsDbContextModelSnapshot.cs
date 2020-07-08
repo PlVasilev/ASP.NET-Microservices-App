@@ -101,39 +101,6 @@ namespace Seller.Listings.Migrations
                     b.ToTable("Listings");
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Message", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserSellerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserSellerId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("Seller.Listings.Data.Models.UserSeller", b =>
                 {
                     b.Property<string>("Id")
@@ -198,13 +165,6 @@ namespace Seller.Listings.Migrations
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Seller.Listings.Data.Models.Message", b =>
-                {
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserSellerId");
                 });
 #pragma warning restore 612, 618
         }
