@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   identityApiUrl: "https://localhost:5003/",
   offersApiUrl: "https://localhost:5005/",
-  listingsApiUrl: "https://localhost:5001/"
+  listingsApiUrl: "https://localhost:5001/",
+  messagesApiUrl: "https://localhost:5007/",
 };
 /*
  * For easier debugging in development mode, you can import the following file

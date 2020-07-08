@@ -14,6 +14,7 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
 import { ErrorInterceptorService } from './shared/services/error-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MessageModule } from './message/message.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     UserModule,
     ListingModule,
     OfferModule,
+    MessageModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],

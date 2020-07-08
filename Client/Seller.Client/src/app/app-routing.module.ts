@@ -6,6 +6,7 @@ import { NotAuthorizedComponent } from './core/not-authorized/not-authorized.com
 import { EditComponent } from './listing/edit/edit.component';
 import { AuthGuard } from './auth.guard';
 import { AllComponent } from './offer/all/all.component';
+import { AddComponent } from './message/add/add.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,14 @@ const routes: Routes = [
     pathMatch: 'full',
     component: LandingComponent
   },
+  {
+    path: 'message/add',
+    component: AddComponent,
+    canActivate: [AuthGuard],
+    data: {
+        isLogged: true
+    }
+},
   {
     path: 'listing/details/:id/offer/all',
     component: AllComponent,
