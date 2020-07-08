@@ -31,5 +31,7 @@
 
         public bool IsDeleted { get; set; }
 
+        public bool IsDeal { get; set; }
+
     }
 }

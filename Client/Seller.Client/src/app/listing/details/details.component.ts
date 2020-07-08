@@ -18,6 +18,7 @@ export class DetailsComponent implements OnInit {
   token: string;
   userId: string;
   offerSize: Number;
+  offersCount: Number;
   currnetOffer: IOffer;
 
   constructor(
@@ -55,6 +56,9 @@ export class DetailsComponent implements OnInit {
         const currentOfferData = {creatorId: this.userId, listingId: this.selectedListing.id }
         this.offerService.getCuurentOffer(currentOfferData).subscribe(res => {
           this.offerSize = res;
+        })
+        this.offerService.getAllOffersForListingCount(this.selectedListing.id).subscribe(res => {
+          this.offersCount = res;
         })
       });
   }

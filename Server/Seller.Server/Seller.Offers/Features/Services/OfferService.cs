@@ -83,6 +83,10 @@
            return result != 0;
         }
 
+        public async Task<int> GetOffersCount(string id) =>
+            await context.Offers.Where(x => x.ListingId == id && x.IsAccepted == false).CountAsync();
+       
+
         public async Task<decimal> GetCurrentOffer(string creatorId, string listingId)
         {
             var offer = await context.Offers.FirstOrDefaultAsync(x =>

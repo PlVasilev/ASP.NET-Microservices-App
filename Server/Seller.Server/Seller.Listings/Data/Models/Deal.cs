@@ -28,7 +28,7 @@
         public string BuyerId { get; set; }
         public UserSeller Buyer { get; set; }
 
-        public bool IsDeleted { get; set; } 
+        public bool IsDeleted { get; set; }
 
     }
 }

@@ -15,6 +15,7 @@ export class OfferService {
   private getCurrentPath = environment.offersApiUrl + 'offer/getCurrentOffer'
   private getAllOffersForListingPath = environment.offersApiUrl + 'offer/'
   private acceptOfferPath = environment.offersApiUrl + 'offer/accept/'
+  private getAllOffersForListingCountPath = environment.offersApiUrl + 'offer/count/'
 
   addOffer(data): Observable<IOffer>{
     return this.http.post<IOffer>(this.addPath, data)
@@ -26,6 +27,10 @@ export class OfferService {
 
   getAllOffersForListing(id): Observable<Array<IOffer>>{
     return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
+  }
+
+  getAllOffersForListingCount(id): Observable<Number>{
+    return this.http.get<Number>(this.getAllOffersForListingCountPath + id)
   }
 
   accept(id){

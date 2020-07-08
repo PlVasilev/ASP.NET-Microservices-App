@@ -39,5 +39,10 @@ namespace Seller.Offers.Features.Offer
         [Route("accept/{id}")]
         public async Task<ActionResult<bool>> Accept(string id) =>
             await offerService.Accept(id);
+
+        [HttpGet]
+        [Route("count/{id}")]
+        public async Task<ActionResult<int>> Count(string id) =>
+            await offerService.GetOffersCount(id);
     }
 }

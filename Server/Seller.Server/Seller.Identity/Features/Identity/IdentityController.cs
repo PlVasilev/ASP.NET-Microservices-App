@@ -1,4 +1,5 @@
-﻿using Seller.Shared.Controllers;
+﻿using System.Linq;
+using Seller.Shared.Controllers;
 
 namespace Seller.Identity.Features.Identity
 {
@@ -47,12 +48,14 @@ namespace Seller.Identity.Features.Identity
             
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid) return Unauthorized();
-            
+
+            var roles = await this.userManager.GetRolesAsync(user);
+
             return new UserOutputModel
             {
                 UserId = user.Id,
                 Username = user.UserName,
-                Token = identityService.GenerateJwtToken(user.Id,user.UserName,this.appSettings.Secret)
+                Token = identityService.GenerateJwtToken(user.Id,user.UserName,this.appSettings.Secret, roles)
             };
         }
     }
