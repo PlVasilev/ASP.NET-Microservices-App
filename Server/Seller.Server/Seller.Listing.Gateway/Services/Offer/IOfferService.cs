@@ -10,5 +10,8 @@ namespace Seller.Listing.Gateway.Services.Offer
     {
         [Get("/Offer/All/{id}")]
         Task<List<OfferResponceModel>> All(string id);
+
+        [Put("/Offer/Accept")]
+        Task<bool> Accept(string id);
     }
 }

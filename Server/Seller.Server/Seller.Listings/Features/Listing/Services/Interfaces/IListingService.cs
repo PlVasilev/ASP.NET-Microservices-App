@@ -16,6 +16,8 @@ namespace Seller.Listings.Features.Listing.Services.Interfaces
 
         public Task<bool> Delete(string id, string userId);
 
+        public Task<bool> Deal(string id);
+
         public Task<IEnumerable<ListingAllResponseModel>> All();
 
         public Task<IEnumerable<ListingAllResponseModel>> Mine(string userId);

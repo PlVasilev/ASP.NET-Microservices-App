@@ -3,6 +3,7 @@ import { OfferService } from '../offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IOffer } from 'src/app/shared/Interfaces/IOffer';
 import { IOfferSeller } from 'src/app/shared/Interfaces/IOfferSeller';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-all',
@@ -15,6 +16,7 @@ export class AllComponent implements OnInit {
   constructor(
     private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
+    private userService: UserService,
     private router: Router) {}
 
   ngOnInit() {
@@ -26,10 +28,10 @@ export class AllComponent implements OnInit {
   }
 
 
-  acceptOffer(id, listingId, creatorId, price){
-    console.log(id);
-    
-    this.offerService.accept(id).subscribe(res => {
+  acceptOffer(id, listingId, creatorId, price, title){
+   
+    const dael = { id, listingId, creatorId, price, title, buyerId : this.userService.getUserId()};
+    this.offerService.accept(dael).subscribe(res => {
       this.router.navigate(['listing/all']);
     })
   }

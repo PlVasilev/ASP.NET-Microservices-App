@@ -34,8 +34,8 @@ namespace Seller.Offers.Features.Offer
         public async Task<ActionResult<List<OfferResponceModel>>> All(string id) =>
             await offerService.All(id);
 
-        [HttpGet]
-        [Route("accept/{id}")]
+        [HttpPut]
+        [Route(nameof(Accept))]
         public async Task<ActionResult<bool>> Accept(string id) =>
             await offerService.Accept(id);
 

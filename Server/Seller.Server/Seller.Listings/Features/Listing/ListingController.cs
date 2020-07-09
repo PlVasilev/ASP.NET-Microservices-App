@@ -1,5 +1,4 @@
 ﻿using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Shared;
 using Seller.Shared.Controllers;
 using Seller.Shared.Services.Identity;
 
@@ -55,6 +54,10 @@ namespace Seller.Listings.Features.Listing
             
             return Ok();
         }
+
+        [HttpPut]
+        [Route(nameof(Deal))]
+        public async Task<ActionResult<bool>> Deal(string id) => await listingService.Deal(id);
 
         [HttpDelete]
         [Route("{id}")]

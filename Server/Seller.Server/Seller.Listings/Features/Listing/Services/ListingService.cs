@@ -110,10 +110,23 @@
             return true;
         }
 
+        public async Task<bool> Deal(string id)
+        {
+            var listing = await context.Listings.FirstOrDefaultAsync(x => x.Id == id);
+
+            listing.IsDeal = true;
+
+            context.Update(listing);
+
+            var result = await context.SaveChangesAsync();
+
+            return result != 0;
+        }
+
 
         public async Task<IEnumerable<ListingAllResponseModel>> All() => await this.context
             .Listings
-            .Where(l => l.IsDeleted == false)
+            .Where(l => l.IsDeleted == false && l.IsDeal == false)
             .OrderByDescending(l => l.Created)
             .Select(l => new ListingAllResponseModel
             {
@@ -127,7 +140,7 @@
 
         public async Task<IEnumerable<ListingAllResponseModel>> Mine(string userId) => await this.context
             .Listings
-            .Where(l => l.SellerId == userId && l.IsDeleted == false)
+            .Where(l => l.SellerId == userId && l.IsDeleted == false && l.IsDeal == false)
             .OrderByDescending(l => l.Created)
             .Select(l => new ListingAllResponseModel
             {

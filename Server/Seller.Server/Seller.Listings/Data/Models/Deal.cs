@@ -1,4 +1,6 @@
-﻿namespace Seller.Listings.Data.Models
+﻿using System;
+
+namespace Seller.Listings.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -15,20 +17,19 @@
 
         [Required]
         public string ListingId { get; set; }
-
-        [Required]
         public Listing Listing { get; set; }
 
         [Required]
         public string SellerId { get; set; }
         public UserSeller Seller { get; set; }
 
-
         [Required]
         public string BuyerId { get; set; }
         public UserSeller Buyer { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
     }
 }

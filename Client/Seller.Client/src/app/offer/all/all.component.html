@@ -16,7 +16,7 @@
         <td>{{offer.created}}</td>
         <td>{{offer.title}}</td>
         <td>{{offer.sellerName}}</td>
-        <td><button class="btn btn-success" (click)="acceptOffer(offer.id, offer.listingId,offer.creatorId)">Accept</button></td>
+        <td><button class="btn btn-success" (click)="acceptOffer(offer.id, offer.listingId, offer.creatorId, offer.price, offer.title)">Accept</button></td>
       </tr>
       </tbody>
     </table>

@@ -18,6 +18,7 @@ export class OfferService {
   private acceptOfferPath = environment.offersApiUrl + 'offer/accept/'
   private getAllOffersForListingCountPath = environment.offersApiUrl + 'offer/count/'
   private getAllOffersForListingCountGatewayPath = environment.listingGatewayApiUrl + 'Listing/OffersAll/'
+  private crateDealPAth = environment.listingGatewayApiUrl + 'Listing/Deal'
 
   addOffer(data): Observable<IOffer>{
     return this.http.post<IOffer>(this.addPath, data)
@@ -38,7 +39,9 @@ export class OfferService {
     return this.http.get<Number>(this.getAllOffersForListingCountPath + id)
   }
 
-  accept(id){
-    return this.http.get(this.acceptOfferPath + id)
+  accept(model){
+    console.log(this.crateDealPAth);
+    
+    return this.http.post(this.crateDealPAth, model)
   }
 }
