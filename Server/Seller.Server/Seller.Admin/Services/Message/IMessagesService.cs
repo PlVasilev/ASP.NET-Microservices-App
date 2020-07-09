@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Refit;
 using Seller.Admin.Models.Message;
 
@@ -9,5 +10,8 @@ namespace Seller.Admin.Services.Message
     {
         [Get("/Message/All")]
         Task<List<MessageResponseModel>> All();
+
+        [Get("/Message/Process/{id}")]
+        Task<bool> Process(string id);
     }
 }

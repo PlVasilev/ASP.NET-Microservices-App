@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Seller.Admin.Services.Message;
 
@@ -17,7 +18,13 @@ namespace Seller.Admin.Controllers
         public async Task<IActionResult> Index()
             => View(await this.message.All());
 
-        public async Task<IActionResult> Process()
-            => View(await this.message.All());
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Process(string id)
+        {
+           await this.message.Process(id);
+           return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+       
     }
 }

@@ -33,7 +33,7 @@ namespace Seller.Messages.Features.Message
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        [Route("process/{id}")]
+        [Route("Process/{id}")]
         public async Task<ActionResult<bool>> Process(string id) =>
             await messageService.Process(id);
     }
