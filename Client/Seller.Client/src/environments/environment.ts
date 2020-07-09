@@ -8,6 +8,7 @@ export const environment = {
   offersApiUrl: "https://localhost:5005/",
   listingsApiUrl: "https://localhost:5001/",
   messagesApiUrl: "https://localhost:5007/",
+  listingGatewayApiUrl: "https://localhost:5009/",
 };
 /*
  * For easier debugging in development mode, you can import the following file

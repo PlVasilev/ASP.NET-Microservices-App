@@ -63,6 +63,20 @@
                 Created = l.Created.ToString("D")
             }).FirstOrDefaultAsync();
 
+        public async Task<ListingTitleAndSellerNameResponseModel> GetTitleAndSellerName(string id)
+        {
+            var result = await context
+                .Listings
+                .Include(x => x.Seller)
+                .FirstOrDefaultAsync(l => l.IsDeleted == false && l.Id == id && l.IsDeal == false);
+
+            return new ListingTitleAndSellerNameResponseModel
+            {
+                SellerName = result.Seller.LastName + " " + result.Seller.LastName,
+                Title = result.Title
+            };
+        }
+
         public async Task<bool> Update(string id, string title, string description, string imageUrl, decimal price, string userId)
         {
             var listing = await this.context
@@ -82,7 +96,7 @@
             return true;
         }
 
-        public async Task<bool> Delete(string id,string userId)
+        public async Task<bool> Delete(string id, string userId)
         {
             var listing = await this.context
                 .Listings

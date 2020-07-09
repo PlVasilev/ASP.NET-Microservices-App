@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IOffer } from '../shared/Interfaces/IOffer';
+import { IOfferSeller } from '../shared/Interfaces/IOfferSeller';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class OfferService {
   private getAllOffersForListingPath = environment.offersApiUrl + 'offer/'
   private acceptOfferPath = environment.offersApiUrl + 'offer/accept/'
   private getAllOffersForListingCountPath = environment.offersApiUrl + 'offer/count/'
+  private getAllOffersForListingCountGatewayPath = environment.listingGatewayApiUrl + 'Listing/OffersAll/'
 
   addOffer(data): Observable<IOffer>{
     return this.http.post<IOffer>(this.addPath, data)
@@ -25,8 +27,11 @@ export class OfferService {
     return this.http.post<Number>(this.getCurrentPath, data)
   }
 
-  getAllOffersForListing(id): Observable<Array<IOffer>>{
-    return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
+  getAllOffersForListing(id): Observable<Array<IOfferSeller>>{
+    console.log(this.getAllOffersForListingCountGatewayPath + id);
+    
+    return this.http.get<Array<IOfferSeller>>(this.getAllOffersForListingCountGatewayPath + id)
+   // return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
   }
 
   getAllOffersForListingCount(id): Observable<Number>{

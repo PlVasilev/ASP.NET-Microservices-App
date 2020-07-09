@@ -3,10 +3,10 @@
     <table *ngIf="allOffers && allOffers.length > 0"  class="table table-striped">
       <thead>
       <tr>  
-        <th  style="width: 15.00%">Send On</th>
-        <th  style="width: 15.00%">Send By</th>
-        <th  style="width: 35.00%">Subject</th>
-        <th  style="width: 35.00%">Content</th>
+        <th  style="width: 15.00%">Price</th>
+        <th  style="width: 20.00%">Send On</th>
+        <th  style="width: 30.00%">Listing Title</th>
+        <th  style="width: 25.00%">Send By</th>
         <th  style="width: 10.00%">Accept</th>
       </tr>
       </thead>
@@ -14,9 +14,9 @@
       <tr *ngFor="let offer of allOffers">
         <td>{{offer.price | currency :'USD':'symbol':'1.2-2'}}</td>
         <td>{{offer.created}}</td>
-        <td>{{offer.listingId}}</td>
-        <td>{{offer.creatorId}}</td>
-        <td><button class="btn btn-success" (click)="acceptOffer(offer.id)">Accept</button></td>
+        <td>{{offer.title}}</td>
+        <td>{{offer.sellerName}}</td>
+        <td><button class="btn btn-success" (click)="acceptOffer(offer.id, offer.listingId,offer.creatorId)">Accept</button></td>
       </tr>
       </tbody>
     </table>

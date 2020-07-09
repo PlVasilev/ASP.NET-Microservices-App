@@ -40,6 +40,10 @@ namespace Seller.Listings.Features.Listing
         [Route("{id}")]
         public async Task<ActionResult<ListingDetailsResponseModel>> Details(string id) => await listingService.Details(id);
 
+        [HttpGet]
+        [Route("GetTitleAndSellerName/{id}")]
+        public async Task<ActionResult<ListingTitleAndSellerNameResponseModel>> GetTitleAndSellerName(string id) => await listingService.GetTitleAndSellerName(id);
+
         [HttpPut]
         [Route(nameof(Update))]
         public async Task<ActionResult> Update(ListingUpdateRequestModel model)
@@ -68,7 +72,11 @@ namespace Seller.Listings.Features.Listing
         public async Task<ActionResult<ListingCreateResponseModel>> Create(ListingCreateRequestModel model) => await 
             listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, UserId());
 
+
+
+
         private string UserId() => sellerService.GetIdByUser(currentUser.UserId).Result.Id;
+
 
     }
 }

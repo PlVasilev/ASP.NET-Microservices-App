@@ -30,7 +30,7 @@ namespace Seller.Offers.Features.Offer
             await offerService.GetCurrentOffer(model.CreatorId, model.ListingId);
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("All/{id}")]
         public async Task<ActionResult<List<OfferResponceModel>>> All(string id) =>
             await offerService.All(id);
 

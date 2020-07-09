@@ -10,6 +10,7 @@ namespace Seller.Listings.Features.Listing.Services.Interfaces
         public Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId);
 
         public Task<ListingDetailsResponseModel> Details(string id);
+        public Task<ListingTitleAndSellerNameResponseModel> GetTitleAndSellerName(string id);
 
         public Task<bool> Update(string id, string title, string description, string imageUrl, decimal price, string userId);
 

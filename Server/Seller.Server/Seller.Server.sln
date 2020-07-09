@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seller.Offers", "Seller.Off
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seller.Messages", "Seller.Messages\Seller.Messages.csproj", "{4622EEB2-FD12-433D-98C8-FD0317CCEAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seller.Admin", "Seller.Admin\Seller.Admin.csproj", "{A2BE1F63-4731-491B-A8AF-91E6A4165F9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seller.Admin", "Seller.Admin\Seller.Admin.csproj", "{A2BE1F63-4731-491B-A8AF-91E6A4165F9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seller.Listing.Gateway", "Seller.Listing.Gateway\Seller.Listing.Gateway.csproj", "{D2DE0600-A1CB-4404-86D5-589FCD2018FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A2BE1F63-4731-491B-A8AF-91E6A4165F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2BE1F63-4731-491B-A8AF-91E6A4165F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2BE1F63-4731-491B-A8AF-91E6A4165F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DE0600-A1CB-4404-86D5-589FCD2018FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DE0600-A1CB-4404-86D5-589FCD2018FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DE0600-A1CB-4404-86D5-589FCD2018FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DE0600-A1CB-4404-86D5-589FCD2018FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

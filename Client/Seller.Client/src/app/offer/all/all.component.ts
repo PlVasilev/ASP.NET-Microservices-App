@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OfferService } from '../offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IOffer } from 'src/app/shared/Interfaces/IOffer';
+import { IOfferSeller } from 'src/app/shared/Interfaces/IOfferSeller';
 
 @Component({
   selector: 'app-all',
@@ -10,7 +11,7 @@ import { IOffer } from 'src/app/shared/Interfaces/IOffer';
 })
 export class AllComponent implements OnInit {
 
-  allOffers: Array<IOffer>
+  allOffers: Array<IOfferSeller>
   constructor(
     private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
@@ -25,7 +26,7 @@ export class AllComponent implements OnInit {
   }
 
 
-  acceptOffer(id){
+  acceptOffer(id, listingId, creatorId, price){
     console.log(id);
     
     this.offerService.accept(id).subscribe(res => {
