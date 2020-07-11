@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,10 @@ namespace Seller.Shared.Infrastructure
             IConfiguration configuration) =>
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
 
-        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddJwtAuthentication(
+            this IServiceCollection services, 
+            IConfiguration configuration,
+            JwtBearerEvents events = null)
         {
             var secret = configuration.GetSection(nameof(AppSettings)).GetValue<string>(nameof(AppSettings.Secret));
 
@@ -55,7 +59,13 @@ namespace Seller.Shared.Infrastructure
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
+
+                    if (events != null)
+                    {
+                        x.Events = events;
+                    }
                 });
+
 
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();

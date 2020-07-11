@@ -37,7 +37,16 @@ namespace Seller.Listings.Features.Listing.Services
             };
 
             context.Add(listing);
-            await context.SaveChangesAsync();
+            var result = await context.SaveChangesAsync();
+
+            if (result > 0)
+            {
+                await this.publisher.Publish(new ListingCreatedMessage
+                {
+                    Title = listing.Title,
+                    Price = listing.Price
+                });
+            }
 
             return new ListingCreateResponseModel()
             {
@@ -54,7 +63,7 @@ namespace Seller.Listings.Features.Listing.Services
 
         public async Task<ListingDetailsResponseModel> Details(string id) => await this.context
             .Listings
-            .Where(l => l.IsDeleted == false && l.Id == id)
+            .Where(l => l.IsDeleted == false && l.IsDeal == false && l.Id == id)
             .Select(l => new ListingDetailsResponseModel()
             {
                 Id = l.Id,
