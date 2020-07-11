@@ -21,6 +21,7 @@ namespace Seller.Offers
                 .AddWebService<OffersDbContext>(this.Configuration)
                 .AddAppServices()
                 .AddSwagger()
+                //.AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingDeletedConsumer))
                 .AddMassTransit(mt =>
                 {
                     mt.AddConsumer<ListingDeletedConsumer>();
@@ -37,7 +38,6 @@ namespace Seller.Offers
                             endpoint.ConfigureConsumer<ListingAcceptedConsumer>(bus);
                         });
                     }));
-
                 })
                 .AddMassTransitHostedService()
                 .AddApiControllers();

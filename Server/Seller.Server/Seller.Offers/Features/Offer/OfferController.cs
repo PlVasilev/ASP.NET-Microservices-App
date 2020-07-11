@@ -21,7 +21,7 @@ namespace Seller.Offers.Features.Offer
         [HttpPost]
         [Route(nameof(Add))]
         public async Task<ActionResult<OfferResponceModel>> Add(OfferAddRequestModel model) =>
-            await offerService.Add(model.Price, model.CreatorId, model.ListingId);
+            await offerService.Add(model.Price, model.CreatorId, model.ListingId, model.Title, model.CreatorName);
 
 
         [HttpPost]

@@ -1,5 +1,6 @@
 <div class="jumbotron">
       <h1 *ngIf="allOffers && allOffers.length == 0" >YOU HAVE NO OFFERS YET</h1>
+      <h1 *ngIf="allOffers && allOffers.length> 0">Offers for {{lisitngTitile}} from {{sellerName}}</h1>
     <table *ngIf="allOffers && allOffers.length > 0"  class="table table-striped">
       <thead>
       <tr>  
@@ -15,7 +16,7 @@
         <td>{{offer.price | currency :'USD':'symbol':'1.2-2'}}</td>
         <td>{{offer.created}}</td>
         <td>{{offer.title}}</td>
-        <td>{{offer.sellerName}}</td>
+        <td>{{offer.buyerName}}</td>
         <td><button class="btn btn-success" (click)="acceptOffer(offer.id, offer.listingId, offer.creatorId, offer.price, offer.title)">Accept</button></td>
       </tr>
       </tbody>

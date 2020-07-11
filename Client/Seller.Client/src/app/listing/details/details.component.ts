@@ -38,12 +38,18 @@ export class DetailsComponent implements OnInit {
   }
 
   addOffertHandler(data) {
-    const offerData = {price: data['price'], creatorId: this.userId, listingId: this.selectedListing.id }
-    console.log(offerData);  
+    const offerData = {
+      price: data['price'],
+      creatorId: this.userId,
+      listingId: this.selectedListing.id,
+      title: this.selectedListing.title,
+      creatorName: this.userService.getUsername()
+    }
+    console.log(offerData);
     this.offerService.addOffer(offerData)
-    .subscribe(res=>{
-      window.location.reload();
-    })
+      .subscribe(res => {
+        window.location.reload();
+      })
   }
 
   ngOnInit() {
@@ -53,7 +59,7 @@ export class DetailsComponent implements OnInit {
         this.selectedListing = listings
         this.userId = this.userService.getUserId()
         this.token = this.userService.getToken()
-        const currentOfferData = {creatorId: this.userId, listingId: this.selectedListing.id }
+        const currentOfferData = { creatorId: this.userId, listingId: this.selectedListing.id }
         this.offerService.getCuurentOffer(currentOfferData).subscribe(res => {
           this.offerSize = res;
         })

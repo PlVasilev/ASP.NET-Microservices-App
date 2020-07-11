@@ -18,7 +18,7 @@
             this.context = context;
         }
 
-        public async Task<OfferResponceModel> Add(decimal price, string creatorId, string listingId)
+        public async Task<OfferResponceModel> Add(decimal price, string creatorId, string listingId, string title, string creatorName)
         {
             var offer = context.Offers.FirstOrDefaultAsync(x =>
                 x.CreatorId == creatorId &&
@@ -39,7 +39,9 @@
                     Created = DateTime.UtcNow,
                     Price = price,
                     ListingId = listingId,
-                    IsAccepted = false
+                    IsAccepted = false,
+                    Title = title,
+                    CreatorName = creatorName
                 };
                 context.Add(offer);
             }
@@ -53,7 +55,9 @@
                 Created = offer.Created.ToString("g"),
                 ListingId = offer.ListingId,
                 Price = offer.Price,
-                IsAccepted = offer.IsAccepted
+                IsAccepted = offer.IsAccepted,
+                Title = offer.Title,
+                CreatorName = offer.CreatorName
             };
         }
 
@@ -67,7 +71,10 @@
                     CreatorId = x.CreatorId,
                     Id = x.Id,
                     ListingId = x.ListingId,
-                    Created = x.Created.ToString("g")
+                    Created = x.Created.ToString("g"),
+                    Title = x.Title,
+                    CreatorName = x.CreatorName
+
                 }).ToListAsync();
 
         public async Task<bool> Accept(string id)
@@ -97,6 +104,22 @@
             var offer = await context.Offers.Where(x => x.ListingId == listingId && x.IsAccepted == false).ToListAsync();
 
             offer.ForEach(x => x.IsDeleted = true);
+
+            context.Offers.UpdateRange(offer);
+
+            var result = await context.SaveChangesAsync();
+
+            return result != 0;
+        }
+
+        public async Task<bool> Edit(string listingId, string title)
+        {
+            var offer = await context.Offers.Where(x => 
+                x.ListingId == listingId && 
+                x.IsAccepted == false &&
+                x.IsDeleted == false).ToListAsync();
+
+            offer.ForEach(x => x.Title = title);
 
             context.Offers.UpdateRange(offer);
 

@@ -43,7 +43,8 @@ namespace Seller.Listing.Gateway.Controllers
                     ListingId = offerResponceModel.ListingId,
                     Price = offerResponceModel.Price,
                     SellerName = listing.SellerName,
-                    Title = listing.Title
+                    BuyerName = offerResponceModel.CreatorName,
+                    Title = offerResponceModel.Title,
                 });
             }
 
@@ -64,18 +65,7 @@ namespace Seller.Listing.Gateway.Controllers
                 SellerId = model.CreatorId,
                 BuyerId = model.BuyerId
             };
-            var isDealCreated = await dealService.Create(deal);
-            if (isDealCreated)
-            {
-              ////  var isOfferAccepted = await offerService.Accept(model.Id);
-              //  var isDeal = await listingService.Deal(model.ListingId);
-              //  if (isDeal)
-              //  {
-              //      return true;
-              //  }
-                return true;
-            }
-            return false;
+            return await dealService.Create(deal);
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seller.Offers.Data;
 
 namespace Seller.Offers.Migrations
 {
     [DbContext(typeof(OffersDbContext))]
-    partial class OffersDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200711114510_AddedBuyerUsernameToOffer")]
+    partial class AddedBuyerUsernameToOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,6 @@ namespace Seller.Offers.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatorName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAccepted")

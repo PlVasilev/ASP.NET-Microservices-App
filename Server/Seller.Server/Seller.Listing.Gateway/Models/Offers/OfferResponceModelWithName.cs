@@ -3,6 +3,6 @@
     public class OfferResponceModelWithName : OfferResponceModel
     {
         public string SellerName { get; set; }
-        public string Title { get; set; }
+        public string BuyerName { get; set; }
     }
 }

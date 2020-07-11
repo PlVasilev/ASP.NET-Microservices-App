@@ -13,6 +13,9 @@ import { UserService } from 'src/app/user/user.service';
 export class AllComponent implements OnInit {
 
   allOffers: Array<IOfferSeller>
+  lisitngTitile: string
+  sellerName: string
+ 
   constructor(
     private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
@@ -23,8 +26,12 @@ export class AllComponent implements OnInit {
     this.allOffers = new Array();
     this.offerService.getAllOffersForListing(this.activatedRoute.snapshot.params.id)
     .subscribe(res => {
-      this.allOffers = res
+      this.allOffers = res;
+      console.log(this.allOffers);
+      this.sellerName = this.allOffers[0].sellerName;
+      this.lisitngTitile = this.allOffers[0].title;
     });
+    
   }
 
 

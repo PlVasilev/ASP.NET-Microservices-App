@@ -91,6 +91,8 @@ namespace Seller.Listings.Features.Listing.Services
 
             if (listing == null) return false;
 
+            var previousTitle = listing.Title;
+
             listing.Title = title;
             listing.Description = description;
             listing.ImageUrl = imageUrl;
@@ -98,6 +100,15 @@ namespace Seller.Listings.Features.Listing.Services
             listing.Created = DateTime.UtcNow;
 
             await context.SaveChangesAsync();
+
+            if (title != previousTitle)
+            {
+                await this.publisher.Publish(new ListingEditedMessage
+                {
+                    ListingId = listing.Id,
+                    Title = title
+                });
+            }
             return true;
         }
 

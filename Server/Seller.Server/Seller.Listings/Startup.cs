@@ -25,6 +25,7 @@ namespace Seller.Listings
                 .AddWebService<ListingsDbContext>(this.Configuration)
                 .AddAppServices()
                 .AddSwagger()
+                //.AddMessaging()
                 .AddMassTransit(mt =>
                     mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(cfg =>
                     {

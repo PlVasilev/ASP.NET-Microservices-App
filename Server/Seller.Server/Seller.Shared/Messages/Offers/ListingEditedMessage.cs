@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Seller.Shared.Messages.Offers
 {
-    public class ListingDeletedMessage
+    public class ListingEditedMessage
     {
         public string ListingId { get; set; }
-
+        public string Title { get; set; }
     }
 }
