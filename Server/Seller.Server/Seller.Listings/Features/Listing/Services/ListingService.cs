@@ -1,4 +1,7 @@
-﻿namespace Seller.Listings.Features.Listing.Services
+﻿using MassTransit;
+using Seller.Shared.Messages.Offers;
+
+namespace Seller.Listings.Features.Listing.Services
 {
     using System;
     using System.Threading.Tasks;
@@ -11,10 +14,12 @@
     public class ListingService : IListingService
     {
         private readonly ListingsDbContext context;
+        private readonly IBus publisher;
 
-        public ListingService(ListingsDbContext context)
+        public ListingService(ListingsDbContext context, IBus publisher)
         {
             this.context = context;
+            this.publisher = publisher;
         }
         public async Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId)
         {
@@ -107,6 +112,10 @@
 
             listing.IsDeleted = true;
             await context.SaveChangesAsync();
+            await this.publisher.Publish(new ListingDeletedMessage
+            {
+                ListingId = listing.Id
+            });
             return true;
         }
 

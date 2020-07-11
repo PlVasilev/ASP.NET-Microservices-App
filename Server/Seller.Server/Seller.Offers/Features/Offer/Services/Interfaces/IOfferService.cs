@@ -8,6 +8,7 @@
         Task<OfferResponceModel> Add(decimal price, string creatorId, string listingId);
         Task<List<OfferResponceModel>> All(string listingId);
         Task<bool> Accept(string id);
+        Task<bool> Delete(string listingId);
         Task<int> GetOffersCount(string id);
         Task<decimal> GetCurrentOffer(string creatorId, string listingId);
     }

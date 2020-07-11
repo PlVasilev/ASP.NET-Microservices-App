@@ -20,9 +20,9 @@
 
         public async Task<OfferResponceModel> Add(decimal price, string creatorId, string listingId)
         {
-            var offer = context.Offers.FirstOrDefaultAsync(x => 
-                x.CreatorId == creatorId && 
-                x.ListingId == listingId && 
+            var offer = context.Offers.FirstOrDefaultAsync(x =>
+                x.CreatorId == creatorId &&
+                x.ListingId == listingId &&
                 x.IsAccepted == false).Result;
 
             if (offer != null)
@@ -32,7 +32,7 @@
             }
             else
             {
-                 offer = new Offer
+                offer = new Offer
                 {
                     Id = Guid.NewGuid().ToString(),
                     CreatorId = creatorId,
@@ -72,20 +72,43 @@
 
         public async Task<bool> Accept(string id)
         {
-           var offer = await context.Offers.FirstOrDefaultAsync(x => x.Id == id);
+            var offer = await context.Offers.FirstOrDefaultAsync(x => x.Id == id);
+            if (offer == null)
+            {
+                return false;
+            }
+            offer.IsAccepted = true;
+            var offers = await context.Offers.Where(x => x.ListingId == offer.ListingId && x.IsAccepted == false).ToListAsync();
+            foreach (var offer1 in offers)
+            {
+                if (offer1.Id == offer.Id) continue;
+                offer1.IsDeleted = true;
+            }
 
-           offer.IsAccepted = true;
+            context.Offers.Update(offer);
+            context.Offers.UpdateRange(offers);
 
-           context.Offers.Update(offer);
-
-           var result = await context.SaveChangesAsync();
-
-           return result != 0;
+            var result = await context.SaveChangesAsync();
+            return result != 0;
         }
+
+        public async Task<bool> Delete(string listingId)
+        {
+            var offer = await context.Offers.Where(x => x.ListingId == listingId && x.IsAccepted == false).ToListAsync();
+
+            offer.ForEach(x => x.IsDeleted = true);
+
+            context.Offers.UpdateRange(offer);
+
+            var result = await context.SaveChangesAsync();
+
+            return result != 0;
+        }
+
 
         public async Task<int> GetOffersCount(string id) =>
             await context.Offers.Where(x => x.ListingId == id && x.IsAccepted == false).CountAsync();
-       
+
 
         public async Task<decimal> GetCurrentOffer(string creatorId, string listingId)
         {

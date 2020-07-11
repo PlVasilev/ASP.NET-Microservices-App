@@ -22,5 +22,7 @@
 
         public bool IsAccepted { get; set; }
 
+        public bool IsDeleted { get; set; }
+
     }
 }

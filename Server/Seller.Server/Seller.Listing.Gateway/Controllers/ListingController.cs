@@ -60,18 +60,20 @@ namespace Seller.Listing.Gateway.Controllers
                 Title = model.Title,
                 Price = model.Price,
                 ListingId = model.ListingId,
+                OfferId = model.Id,
                 SellerId = model.CreatorId,
                 BuyerId = model.BuyerId
             };
             var isDealCreated = await dealService.Create(deal);
             if (isDealCreated)
             {
-                var isOfferAccepted = await offerService.Accept(model.Id);
-                var isDeal = await listingService.Deal(model.ListingId);
-                if (isOfferAccepted && isDeal)
-                {
-                    return true;
-                }
+              ////  var isOfferAccepted = await offerService.Accept(model.Id);
+              //  var isDeal = await listingService.Deal(model.ListingId);
+              //  if (isDeal)
+              //  {
+              //      return true;
+              //  }
+                return true;
             }
             return false;
         }

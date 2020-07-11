@@ -1,3 +1,6 @@
+using GreenPipes;
+using MassTransit;
+
 namespace Seller.Listings
 {
     using Data;
@@ -22,7 +25,14 @@ namespace Seller.Listings
                 .AddWebService<ListingsDbContext>(this.Configuration)
                 .AddAppServices()
                 .AddSwagger()
+                .AddMassTransit(mt =>
+                    mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                    {
+                        cfg.Host("localhost");
+                    })))
+                .AddMassTransitHostedService()
                 .AddApiControllers();
+        
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) =>
             app.UseWebService(env)
