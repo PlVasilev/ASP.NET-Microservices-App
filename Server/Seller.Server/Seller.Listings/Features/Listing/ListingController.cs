@@ -76,10 +76,7 @@ namespace Seller.Listings.Features.Listing
             listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, UserId());
 
 
-
-
         private string UserId() => sellerService.GetIdByUser(currentUser.UserId).Result.Id;
-
 
     }
 }

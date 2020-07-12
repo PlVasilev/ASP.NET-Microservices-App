@@ -37,10 +37,8 @@ export class EditComponent implements OnInit {
   updateListingHandler(data: IListing) {
     data.id = this.activatedRoute.snapshot.params.id;
     this.listingService.edit(data).subscribe(res => {
+      this.from.reset();
+      this.router.navigate([`/listing/details/${this.selectedListing.id}`])
     });
-    this.from.reset();
-    this.router.navigate(['listing/mine']).then(() => {
-      window.location.reload();
-   });;
   }
 }

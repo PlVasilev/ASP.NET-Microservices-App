@@ -20,10 +20,12 @@ export class AddComponent {
     
     this.listingService.create(data).subscribe(res => {
       console.log(res)
+      this.from.reset();
+      this.router.navigate([`/listing/details/${res.id}`])
     });
-    this.from.reset();
-    this.router.navigate(['listing/all']).then(() => {
-      window.location.reload();
-   });
+    
+  //   this.router.navigate(['listing/all']).then(() => {
+  //     window.location.reload();
+  //  });
   }
 }

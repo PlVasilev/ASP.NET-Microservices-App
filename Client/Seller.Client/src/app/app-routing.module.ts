@@ -7,6 +7,7 @@ import { EditComponent } from './listing/edit/edit.component';
 import { AuthGuard } from './auth.guard';
 import { AllComponent } from './offer/all/all.component';
 import { AddComponent } from './message/add/add.component';
+import { MineComponent } from './offer/mine/mine.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,14 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: LandingComponent
+  },
+  {
+    path: 'offer/mine',
+    component: MineComponent,
+    canActivate: [AuthGuard],
+    data: {
+        isLogged: true
+    },
   },
   {
     path: 'message/add',

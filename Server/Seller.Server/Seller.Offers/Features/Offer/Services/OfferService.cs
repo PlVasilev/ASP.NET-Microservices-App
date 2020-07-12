@@ -77,7 +77,22 @@
 
                 }).ToListAsync();
 
-        public async Task<bool> Accept(string id)
+        public async Task<List<OfferResponceModel>> Mine(string userId) => await 
+        context
+            .Offers
+            .Where(x => x.CreatorId == userId && x.IsAccepted == false && x.IsDeleted == false)
+        .Select(x => new OfferResponceModel
+        {
+            Price = x.Price,
+            CreatorId = x.CreatorId,
+            Id = x.Id,
+            ListingId = x.ListingId,
+            Created = x.Created.ToString("g"),
+            Title = x.Title,
+            CreatorName = x.CreatorName
+        }).ToListAsync();
+
+    public async Task<bool> Accept(string id)
         {
             var offer = await context.Offers.FirstOrDefaultAsync(x => x.Id == id);
             if (offer == null)
@@ -110,6 +125,18 @@
             var result = await context.SaveChangesAsync();
 
             return result != 0;
+        }
+
+        public async Task<bool> DeleteOffer(string id)
+        {
+            var offer = await context.Offers.FirstOrDefaultAsync(x => x.Id == id);
+            if (offer == null)
+            {
+                return false;
+            }
+            offer.IsDeleted = true;
+            context.Update(offer);
+            return await context.SaveChangesAsync() != 0;
         }
 
         public async Task<bool> Edit(string listingId, string title)

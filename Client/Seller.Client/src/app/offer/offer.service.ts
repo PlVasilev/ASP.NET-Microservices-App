@@ -10,38 +10,46 @@ import { IOfferSeller } from '../shared/Interfaces/IOfferSeller';
 })
 export class OfferService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private addPath = environment.offersApiUrl + 'offer/add'
   private getCurrentPath = environment.offersApiUrl + 'offer/getCurrentOffer'
-  private getAllOffersForListingPath = environment.offersApiUrl + 'offer/'
-  private acceptOfferPath = environment.offersApiUrl + 'offer/accept/'
   private getAllOffersForListingCountPath = environment.offersApiUrl + 'offer/count/'
+  private getAllMineOffersForListingPath = environment.offersApiUrl + 'offer/mine/'
+  private getDeleteOffersForListingPath = environment.offersApiUrl + 'offer/DeleteOffer/'
   private getAllOffersForListingCountGatewayPath = environment.listingGatewayApiUrl + 'Listing/OffersAll/'
   private crateDealPAth = environment.listingGatewayApiUrl + 'Listing/Deal'
 
-  addOffer(data): Observable<IOffer>{
+  addOffer(data): Observable<IOffer> {
     return this.http.post<IOffer>(this.addPath, data)
   }
 
-  getCuurentOffer(data): Observable<Number>{
+  getCuurentOffer(data): Observable<Number> {
     return this.http.post<Number>(this.getCurrentPath, data)
   }
 
-  getAllOffersForListing(id): Observable<Array<IOfferSeller>>{
+  getAllOffersForListing(id): Observable<Array<IOfferSeller>> {
     console.log(this.getAllOffersForListingCountGatewayPath + id);
-    
+
     return this.http.get<Array<IOfferSeller>>(this.getAllOffersForListingCountGatewayPath + id)
-   // return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
+    // return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
   }
 
-  getAllOffersForListingCount(id): Observable<Number>{
+  getAllOffersForListingCount(id): Observable<Number> {
     return this.http.get<Number>(this.getAllOffersForListingCountPath + id)
   }
 
-  accept(model){
+  getAllMineOffers(id): Observable<Array<IOfferSeller>> {
+    return this.http.get<Array<IOfferSeller>>(this.getAllMineOffersForListingPath + id)
+  }
+
+  deleteOffer(id): Observable<boolean> {
+    return this.http.delete<boolean>(this.getDeleteOffersForListingPath + id)
+  }
+
+  accept(model) {
     console.log(this.crateDealPAth);
-    
+
     return this.http.post(this.crateDealPAth, model)
   }
 }

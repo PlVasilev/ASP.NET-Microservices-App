@@ -30,6 +30,11 @@ namespace Seller.Offers.Features.Offer
             await offerService.GetCurrentOffer(model.CreatorId, model.ListingId);
 
         [HttpGet]
+        [Route("Mine/{id}")]
+        public async Task<ActionResult<List<OfferResponceModel>>> Mine(string id) =>
+            await offerService.Mine(id);
+
+        [HttpGet]
         [Route("All/{id}")]
         public async Task<ActionResult<List<OfferResponceModel>>> All(string id) =>
             await offerService.All(id);
@@ -43,5 +48,16 @@ namespace Seller.Offers.Features.Offer
         [Route("count/{id}")]
         public async Task<ActionResult<int>> Count(string id) =>
             await offerService.GetOffersCount(id);
+
+        [HttpDelete]
+        [Route("DeleteOffer/{id}")]
+        public async Task<ActionResult> DeleteOffer(string id)
+        {
+            var deleted = await offerService.DeleteOffer(id);
+
+            if (!deleted) return BadRequest();
+
+            return Ok();
+        }
     }
 }
