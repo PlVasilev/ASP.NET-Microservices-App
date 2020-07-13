@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,8 @@ namespace Seller.Listing.Gateway.Controllers
             this.dealService = dealService;
         }
 
+
+
         [HttpGet]
         [Authorize]
         [Route("OffersAll/{id}")]
@@ -44,7 +47,7 @@ namespace Seller.Listing.Gateway.Controllers
                     Price = offerResponceModel.Price,
                     SellerName = listing.SellerName,
                     BuyerName = offerResponceModel.CreatorName,
-                    Title = offerResponceModel.Title,
+                    Title = listing.Title,
                 });
             }
 

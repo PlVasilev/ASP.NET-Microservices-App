@@ -27,8 +27,6 @@ export class AddComponent implements OnInit {
       content: data['content'],
     }
     this.messageService.addMessage(messageData).subscribe(res => {
-      console.log(res);
-      
     })
     this.from.reset();
     this.router.navigate(['listing/all']);

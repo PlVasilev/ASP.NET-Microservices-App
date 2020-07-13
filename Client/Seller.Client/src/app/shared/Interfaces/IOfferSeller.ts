@@ -5,7 +5,7 @@ export interface IOfferSeller {
     created: string,
     creatorId: string,
     isAccepted: boolean,
-    creatorName: string,
+    sellerName: string,
     buyerName: string,
     title: string
   }

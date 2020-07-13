@@ -8,8 +8,5 @@
         [Get("/Listing/GetTitleAndSellerName/{id}")]
         Task<ListingTitleAndSellerNameResponseModel> GetTitleAndSellerName(string id);
 
-        [Put("/Listing/Deal")]
-        Task<bool> Deal(string id);
-
     }
 }

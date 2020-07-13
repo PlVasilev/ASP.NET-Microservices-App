@@ -11,5 +11,11 @@ namespace Seller.Listing.Gateway.Services.Deal
     {
         [Post("/Deal/Create")]
         Task<bool> Create(DealCreateRequestModel model);
+
+        [Get("/Deal/BuyDeals/{id}")]
+        Task<List<DealResponseModel>> BuyDeals(string id);
+
+        [Get("/Deal/SaleDeals/{id}")]
+        Task<List<DealResponseModel>> SaleDeals(string id);
     }
 }

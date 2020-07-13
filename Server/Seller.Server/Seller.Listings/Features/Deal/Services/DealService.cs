@@ -1,4 +1,6 @@
-﻿using MassTransit;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Seller.Shared.Messages.Offers;
 
@@ -51,5 +53,27 @@ namespace Seller.Listings.Features.Deal.Services
 
             return result != 0;
         }
+
+        public async Task<List<DealResponseModel>> BuyDeals(string id) => await context.Deals
+            .Where(x => x.BuyerId == id)
+            .OrderByDescending(x => x.CreatedOn)
+            .Select(x => new DealResponseModel
+            {
+                Id = x.Id,
+                CreatedOn = x.CreatedOn.ToString("g"),
+                Price = x.Price,
+                Title = x.Title
+            }).ToListAsync();
+
+        public async Task<List<DealResponseModel>> SaleDeals(string id) => await context.Deals
+            .Where(x => x.SellerId == id)
+            .OrderByDescending(x => x.CreatedOn)
+            .Select(x => new DealResponseModel
+            {
+                Id = x.Id,
+                CreatedOn = x.CreatedOn.ToString("g"),
+                Price = x.Price,
+                Title = x.Title
+            }).ToListAsync();
     }
 }

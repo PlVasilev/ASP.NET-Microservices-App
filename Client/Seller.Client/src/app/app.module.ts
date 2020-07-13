@@ -15,6 +15,8 @@ import { ErrorInterceptorService } from './shared/services/error-interceptor.ser
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MessageModule } from './message/message.module';
+import { DealModule } from './deal/deal.module';
+import { DealService } from './deal/deal.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MessageModule } from './message/message.module';
     ListingModule,
     OfferModule,
     MessageModule,
+    DealModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
@@ -36,6 +39,7 @@ import { MessageModule } from './message/message.module';
     UserService,
     ListingService,
     OfferService,
+    DealService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

@@ -28,7 +28,9 @@ export class AllComponent implements OnInit {
     .subscribe(res => {
       this.allOffers = res;
       console.log(this.allOffers);
-      this.sellerName = this.allOffers[0].creatorName;
+      this.sellerName = this.allOffers[0].sellerName;
+      console.log(this.sellerName);
+      
       this.lisitngTitile = this.allOffers[0].title;
     });
     
