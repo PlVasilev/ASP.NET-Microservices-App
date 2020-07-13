@@ -34,15 +34,14 @@ export class AllComponent implements OnInit {
   }
   
   @ViewChild('searchFrom', {static: true}) from: NgForm
-  // @ViewChild('searchFrom', { static: true }) from: NgForm
   
    searchFormHandler(value){  
-     // this.listingService.searchListings(value);
+    this.listingService.getListings().subscribe(listings => {
+      this.allListings = listings
+      this.allListings = this.allListings.filter(x => x.title.includes(value.search))
+    });
+     
    }
-
-  // detailsHandler(listing: IListing){
-  //   this.listingService.selectedListing = listing;
-  // }
 
   fromChild(event){
     this.listingId = event;
