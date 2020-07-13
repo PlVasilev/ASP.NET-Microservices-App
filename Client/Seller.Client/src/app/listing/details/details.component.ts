@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IListing } from 'src/app/shared/Interfaces/IListing';
 import { IOffer } from 'src/app/shared/Interfaces/IOffer';
 import { OfferService } from 'src/app/offer/offer.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -26,7 +27,8 @@ export class DetailsComponent implements OnInit {
     private offerService: OfferService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   @ViewChild('addOfferForm', { static: true }) from: NgForm
@@ -48,7 +50,8 @@ export class DetailsComponent implements OnInit {
     console.log(offerData);
     this.offerService.addOffer(offerData)
       .subscribe(res => {
-        window.location.reload();
+        this.toastrService.success("Offer Send")
+        window.location.reload(); 
       })
   }
 

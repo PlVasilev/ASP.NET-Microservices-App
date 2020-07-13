@@ -3,6 +3,7 @@ import { IOfferSeller } from 'src/app/shared/Interfaces/IOfferSeller';
 import { OfferService } from '../offer.service';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-mine',
@@ -18,7 +19,8 @@ export class MineComponent implements OnInit {
   constructor(
     private offerService: OfferService,
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,
+    private toastrService: ToastrService) {}
 
   ngOnInit() {
     this.allOffers = new Array();
@@ -35,6 +37,7 @@ export class MineComponent implements OnInit {
 
   deleteOffer(id){
     this.offerService.deleteOffer(id).subscribe(res => {
+      this.toastrService.success("Offer Removed")
       window.location.reload();
     })
   }

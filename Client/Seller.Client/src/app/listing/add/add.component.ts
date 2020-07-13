@@ -23,9 +23,5 @@ export class AddComponent {
       this.from.reset();
       this.router.navigate([`/listing/details/${res.id}`])
     });
-    
-  //   this.router.navigate(['listing/all']).then(() => {
-  //     window.location.reload();
-  //  });
   }
 }

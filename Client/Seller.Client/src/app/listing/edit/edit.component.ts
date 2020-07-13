@@ -4,6 +4,7 @@ import { ListingService } from '../listing.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IListing } from 'src/app/shared/Interfaces/IListing';
 import { UserService } from 'src/app/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit',
@@ -20,7 +21,8 @@ export class EditComponent implements OnInit {
     private listingService: ListingService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService,
   ) { }
 
   @ViewChild('editListingForm', { static: true }) from: NgForm
@@ -39,6 +41,7 @@ export class EditComponent implements OnInit {
     this.listingService.edit(data).subscribe(res => {
       this.from.reset();
       this.router.navigate([`/listing/details/${this.selectedListing.id}`])
+      this.toastrService.success("Listing Edited")
     });
   }
 }
