@@ -1,4 +1,6 @@
-﻿namespace Seller.Admin.Controllers
+﻿using Seller.Admin.Services;
+
+namespace Seller.Admin.Controllers
 {
     using System;
     using System.Threading.Tasks;
@@ -31,6 +33,8 @@
                     var result = await this.identityService
                         .Login(model);
 
+                    TokenService.Token = result.Token; // TODO this.Response.Cookies NOT WORKING NOT WORKING IN DOCKER
+
                     this.Response.Cookies.Append(
                         AuthenticationCookieName,
                         result.Token,
@@ -48,7 +52,7 @@
         public IActionResult Logout()
         {
             this.Response.Cookies.Delete(AuthenticationCookieName);
-
+            TokenService.Token = null; // TODO this.Response.Cookies NOT WORKING NOT WORKING IN DOCKER
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }

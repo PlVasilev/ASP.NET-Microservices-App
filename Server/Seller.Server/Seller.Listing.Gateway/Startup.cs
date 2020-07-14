@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+
 namespace Seller.Listing.Gateway
 {
     using Microsoft.AspNetCore.Builder;
@@ -48,7 +50,19 @@ namespace Seller.Listing.Gateway
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseJwtHeaderAuthentication().UseWebService(env);
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+
+            app
+                .UseJwtHeaderAuthentication()
+                .UseSwaggerUI()
+                .UseRouting()
+                .UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

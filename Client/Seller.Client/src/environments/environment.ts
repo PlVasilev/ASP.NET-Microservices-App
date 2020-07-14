@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  identityApiUrl: "https://localhost:5003/",
-  offersApiUrl: "https://localhost:5005/",
-  listingsApiUrl: "https://localhost:5001/",
-  messagesApiUrl: "https://localhost:5007/",
-  listingGatewayApiUrl: "https://localhost:5009/",
+  identityApiUrl: "http://localhost:5003/",
+  offersApiUrl: "http://localhost:5005/",
+  listingsApiUrl: "http://localhost:5001/",
+  messagesApiUrl: "http://localhost:5007/",
+  listingGatewayApiUrl: "http://localhost:5009/",
 };
 /*
  * For easier debugging in development mode, you can import the following file

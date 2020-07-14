@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using Refit;
 
-    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+   [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         protected async Task<ActionResult> Handle(Func<Task> action, ActionResult success, ActionResult failure)

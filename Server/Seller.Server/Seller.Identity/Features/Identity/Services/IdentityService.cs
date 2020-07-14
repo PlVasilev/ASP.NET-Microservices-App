@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 using Seller.Identity.Data;
 using Seller.Identity.Data.Models;
 using Seller.Identity.Features.Identity.Services.Interfaces;
+using Seller.Shared;
 
 namespace Seller.Identity.Features.Identity.Services
 {
@@ -19,12 +21,13 @@ namespace Seller.Identity.Features.Identity.Services
         private const string InvalidErrorMessage = "Invalid credentials.";
 
         private readonly UserManager<User> userManager;
-        private readonly IdentityDbContext context;
+        private readonly AppSettings appSettings;
 
-        public IdentityService(UserManager<User> userManager, IdentityDbContext context)
+
+        public IdentityService(UserManager<User> userManager, IOptions<AppSettings> appSettings)
         {
             this.userManager = userManager;
-            this.context = context;
+            this.appSettings = appSettings.Value;
         }
 
       
@@ -50,7 +53,7 @@ namespace Seller.Identity.Features.Identity.Services
         public string GenerateJwtToken(string userId, string userName, string secret, IEnumerable<string> roles = null)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
             var claims = new List<Claim>
             {

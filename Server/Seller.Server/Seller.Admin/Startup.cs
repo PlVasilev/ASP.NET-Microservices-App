@@ -6,11 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Seller.Admin.Infrastructure;
 using Seller.Admin.Services;
-using Seller.Shared.Infrastructure;
-using Seller.Shared.Services.Identity;
 using Refit;
 using Seller.Admin.Services.Identity;
 using Seller.Admin.Services.Message;
+using Seller.Shared.Infrastructure;
+using Seller.Shared.Services.Identity;
+
 
 namespace Seller.Admin
 {

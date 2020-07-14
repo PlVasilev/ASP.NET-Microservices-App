@@ -47,12 +47,14 @@ export class DetailsComponent implements OnInit {
       title: this.selectedListing.title,
       creatorName: this.userService.getUsername()
     }
-    console.log(offerData);
     this.offerService.addOffer(offerData)
       .subscribe(res => {
         this.toastrService.success("Offer Send")
-        window.location.reload(); 
       })
+      setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+      
   }
 
   ngOnInit() {

@@ -15,11 +15,8 @@ export class AddComponent {
 
   @ViewChild('addListingForm', { static: true }) from: NgForm
 
-  createListingHandler(data){
-    console.log(data);
-    
+  createListingHandler(data){    
     this.listingService.create(data).subscribe(res => {
-      console.log(res)
       this.from.reset();
       this.router.navigate([`/listing/details/${res.id}`])
     });

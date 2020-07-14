@@ -1,4 +1,6 @@
-﻿namespace Seller.Admin.Infrastructure
+﻿using Seller.Admin.Services;
+
+namespace Seller.Admin.Infrastructure
 {
     using System.Threading.Tasks;
     using Seller.Shared.Services.Identity;
@@ -16,7 +18,7 @@
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var token = context.Request.Cookies[AuthenticationCookieName];
+            var token = TokenService.Token; //TODO context.Request.Cookies[AuthenticationCookieName]; NOT WORKING IN DOCKER
 
             if (token != null)
             {

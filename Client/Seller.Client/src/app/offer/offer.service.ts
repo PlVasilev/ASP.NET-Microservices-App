@@ -29,10 +29,8 @@ export class OfferService {
   }
 
   getAllOffersForListing(id): Observable<Array<IOfferSeller>> {
-    console.log(this.getAllOffersForListingCountGatewayPath + id);
+  return this.http.get<Array<IOfferSeller>>(this.getAllOffersForListingCountGatewayPath + id)
 
-    return this.http.get<Array<IOfferSeller>>(this.getAllOffersForListingCountGatewayPath + id)
-    // return this.http.get<Array<IOffer>>(this.getAllOffersForListingPath + id)
   }
 
   getAllOffersForListingCount(id): Observable<Number> {

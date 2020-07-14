@@ -34,7 +34,7 @@ namespace Seller.Shared.Infrastructure
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
 
         public static IServiceCollection AddJwtAuthentication(
-            this IServiceCollection services, 
+            this IServiceCollection services,
             IConfiguration configuration,
             JwtBearerEvents events = null)
         {
@@ -84,7 +84,11 @@ namespace Seller.Shared.Infrastructure
 
                     mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(rmq =>
                     {
-                        rmq.Host("localhost");
+                        rmq.Host("rabbitmq", host =>
+                        {
+                            host.Username("rabbitmq");
+                            host.Password("rabbitmq");
+                        });
 
                         consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
                         {
