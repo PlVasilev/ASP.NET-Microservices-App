@@ -1,3 +1,6 @@
+using Hangfire;
+using Seller.Shared.Messages;
+
 namespace Seller.Listings
 {
     using Data;
@@ -22,7 +25,14 @@ namespace Seller.Listings
                 .AddWebService<ListingsDbContext>(this.Configuration)
                 .AddAppServices()
                 .AddSwagger()
-                .AddMessaging()
+                .AddMessaging(Configuration)
+                .AddHangfire(config => config
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(Configuration.GetDefaultConnectionString()))
+                .AddHangfireServer()
+                .AddHostedService<MessagesHostedService>()
                 .AddApiControllers();
         
 

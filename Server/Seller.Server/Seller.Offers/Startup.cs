@@ -21,25 +21,10 @@ namespace Seller.Offers
                 .AddWebService<OffersDbContext>(this.Configuration)
                 .AddAppServices()
                 .AddSwagger()
-                .AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
-                //.AddMassTransit(mt =>
-                //{
-                //    mt.AddConsumer<ListingDeletedConsumer>();
-                //    mt.AddConsumer<ListingAcceptedConsumer>();
-                //    mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(cfg =>
-                //    {
-                //        cfg.Host("localhost");
-                //        cfg.ReceiveEndpoint(nameof(ListingDeletedConsumer), endpoint =>
-                //        {
-                //            endpoint.ConfigureConsumer<ListingDeletedConsumer>(bus);
-                //        });
-                //        cfg.ReceiveEndpoint(nameof(ListingAcceptedConsumer), endpoint =>
-                //        {
-                //            endpoint.ConfigureConsumer<ListingAcceptedConsumer>(bus);
-                //        });
-                //    }));
-                //})
-                //.AddMassTransitHostedService()
+                .AddMessaging( this.Configuration,
+                    typeof(ListingDeletedConsumer),
+                    typeof(ListingAcceptedConsumer), 
+                    typeof(ListingEditedConsumer))
                 .AddApiControllers();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -52,7 +52,7 @@ namespace Seller.Admin.Controllers
         public IActionResult Logout()
         {
             this.Response.Cookies.Delete(AuthenticationCookieName);
-            TokenService.Token = null; // TODO this.Response.Cookies NOT WORKING NOT WORKING IN DOCKER
+            TokenService.Token = null; // TODO this.Response.Cookies NOT WORKING IN DOCKER
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }

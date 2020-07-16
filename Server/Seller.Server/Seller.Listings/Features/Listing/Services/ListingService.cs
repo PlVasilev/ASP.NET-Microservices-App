@@ -1,8 +1,11 @@
-﻿using MassTransit;
-using Seller.Shared.Messages.Offers;
+﻿
 
 namespace Seller.Listings.Features.Listing.Services
 {
+    using MassTransit;
+    using Shared.Data.Models;
+    using Shared.Messages.Offers;
+    using Shared.Services;
     using System;
     using System.Threading.Tasks;
     using Data;
@@ -11,12 +14,13 @@ namespace Seller.Listings.Features.Listing.Services
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using Models;
-    public class ListingService : IListingService
+    using Data.Models;
+    public class ListingService : DataService<Listing>, IListingService
     {
         private readonly ListingsDbContext context;
         private readonly IBus publisher;
 
-        public ListingService(ListingsDbContext context, IBus publisher)
+        public ListingService(ListingsDbContext context, IBus publisher) : base(context)
         {
             this.context = context;
             this.publisher = publisher;
@@ -24,7 +28,7 @@ namespace Seller.Listings.Features.Listing.Services
         public async Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId)
         {
 
-            var listing = new Data.Models.Listing()
+            var listing = new Listing()
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = title,
@@ -36,17 +40,24 @@ namespace Seller.Listings.Features.Listing.Services
                 SellerId = userId
             };
 
-            context.Add(listing);
-            var result = await context.SaveChangesAsync();
-
-            if (result > 0)
+            var messageData = new ListingCreatedMessage
             {
-                await this.publisher.Publish(new ListingCreatedMessage
-                {
-                    Title = listing.Title,
-                    Price = listing.Price
-                });
-            }
+                Title = listing.Title,
+                Price = listing.Price
+            };
+
+            var id = Guid.NewGuid().ToString();
+            var message = new Message(messageData, id);
+
+            this.context.Add(message);
+
+            this.context.Add(listing);
+
+            await context.SaveChangesAsync();
+
+            await this.publisher.Publish(messageData);
+
+            await this.MarkMessageAsPublished(message.Id);
 
             return new ListingCreateResponseModel()
             {
@@ -108,16 +119,24 @@ namespace Seller.Listings.Features.Listing.Services
             listing.Price = price;
             listing.Created = DateTime.UtcNow;
 
-            await context.SaveChangesAsync();
+            var messageData = new ListingEditedMessage
+            {
+                ListingId = listing.Id,
+                Title = title
+            };
+
+            var messageId = Guid.NewGuid().ToString();
+            var message = new Message(messageData, messageId);
+
+            await this.Save(listing, message);
 
             if (title != previousTitle)
             {
-                await this.publisher.Publish(new ListingEditedMessage
-                {
-                    ListingId = listing.Id,
-                    Title = title
-                });
+                await this.publisher.Publish(messageData);
             }
+
+            await this.MarkMessageAsPublished(messageId);
+            
             return true;
         }
 
@@ -131,11 +150,18 @@ namespace Seller.Listings.Features.Listing.Services
             if (listing == null) return false;
 
             listing.IsDeleted = true;
-            await context.SaveChangesAsync();
-            await this.publisher.Publish(new ListingDeletedMessage
+            var messageData = new ListingDeletedMessage()
             {
                 ListingId = listing.Id
-            });
+            };
+
+            var messageId = Guid.NewGuid().ToString();
+            var message = new Message(messageData, messageId);
+
+            await this.Save(listing, message);
+        
+            await this.publisher.Publish(messageData);
+            
             return true;
         }
 

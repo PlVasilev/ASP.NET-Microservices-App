@@ -1,16 +1,18 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Seller.Notifications.Hub;
-using Seller.Notifications.Messages;
-using Seller.Shared.Infrastructure;
+using Hangfire;
+using Microsoft.EntityFrameworkCore;
+using Seller.Notifications.Infrastructure;
+using Seller.Shared.Data;
 
 namespace Seller.Notifications
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Hub;
+    using Messages;
+    using Shared.Infrastructure;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,8 +26,8 @@ namespace Seller.Notifications
         {
             services
                 .AddCors()
-                .AddJwtAuthentication(this.Configuration, JwtBearerEventsConfiguration.GetBearerEvent)
-                .AddMessaging(typeof(ListingCreatedConsumer))
+                .AddJwtAuthentication(this.Configuration, JwtConfiguration.BearerEvents)
+                .AddMessaging(this.Configuration, typeof(ListingCreatedConsumer))
                 .AddSignalR();
            
         }

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using GreenPipes;
+using Hangfire;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Seller.Shared.Messages;
 using Seller.Shared.Services.Identity;
 
 namespace Seller.Shared.Infrastructure
@@ -27,7 +30,12 @@ namespace Seller.Shared.Infrastructure
             => services
                 .AddScoped<DbContext, TDbContext>()
                 .AddDbContext<TDbContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(configuration.GetDefaultConnectionString(),
+                        sqlOptions => sqlOptions
+                        .EnableRetryOnFailure(
+                            maxRetryCount: 10,
+                            maxRetryDelay: TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null)));
 
         public static IServiceCollection AddApplicationSettings(this IServiceCollection services,
             IConfiguration configuration) =>
@@ -75,6 +83,7 @@ namespace Seller.Shared.Infrastructure
 
         public static IServiceCollection AddMessaging(
             this IServiceCollection services,
+            IConfiguration configuration,
             params Type[] consumers)
         {
             services
@@ -92,11 +101,24 @@ namespace Seller.Shared.Infrastructure
 
                         consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
                         {
+                            endpoint.PrefetchCount = 6;
+                            endpoint.UseMessageRetry(retry => retry.Interval(10, 1000));
                             endpoint.ConfigureConsumer(bus, consumer);
                         }));
                     }));
                 })
                 .AddMassTransitHostedService();
+
+            //services
+            //    .AddHangfire(config => config
+            //        .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            //        .UseSimpleAssemblyNameTypeSerializer()
+            //        .UseRecommendedSerializerSettings()
+            //        .UseSqlServerStorage(configuration.GetDefaultConnectionString()));
+
+            //services.AddHangfireServer();
+
+            //services.AddHostedService<MessagesHostedService>();
 
             return services;
         }

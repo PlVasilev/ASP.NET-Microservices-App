@@ -18,6 +18,7 @@ export class AddComponent {
   createListingHandler(data){    
     this.listingService.create(data).subscribe(res => {
       this.from.reset();
+     // this.tservice.success(`A New Lising : ${data.title} for $ ${data.price}`);
       this.router.navigate([`/listing/details/${res.id}`])
     });
   }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Seller.Listings.Features.Listing.Models;
-using Seller.Listings.Data.Models;
-
-namespace Seller.Listings.Features.Listing.Services.Interfaces
+﻿namespace Seller.Listings.Features.Listing.Services.Interfaces
 {
-    public interface IListingService
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Models;
+    using Shared.Services;
+    using Data.Models;
+
+    public interface IListingService : IDataService<Listing>
     {
         public Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price, string userId);
 

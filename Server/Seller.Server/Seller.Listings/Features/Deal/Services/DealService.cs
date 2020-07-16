@@ -2,7 +2,9 @@
 using System.Linq;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Seller.Shared.Data.Models;
 using Seller.Shared.Messages.Offers;
+using Seller.Shared.Services;
 
 namespace Seller.Listings.Features.Deal.Services
 {
@@ -13,12 +15,12 @@ namespace Seller.Listings.Features.Deal.Services
     using Data.Models;
     using Data;
 
-    public class DealService : IDealService
+    public class DealService : DataService<Listing>, IDealService
     {
         private readonly ListingsDbContext context;
         private readonly IBus publisher;
 
-        public DealService(ListingsDbContext context, IBus publisher)
+        public DealService(ListingsDbContext context, IBus publisher) : base(context)
         {
             this.context = context;
             this.publisher = publisher;
@@ -42,16 +44,22 @@ namespace Seller.Listings.Features.Deal.Services
             listing.IsDeal = true;
 
             context.Add(deal);
-            context.Listings.Update(listing);
+           // context.Listings.Update(listing);
 
-            var result = await context.SaveChangesAsync();
+            //var result = await context.SaveChangesAsync();
 
-            await this.publisher.Publish(new ListingAcceptedMessage
+            var messageData = new ListingAcceptedMessage()
             {
                 ListingId = model.OfferId
-            });
+            };
 
-            return result != 0;
+            var messageId = Guid.NewGuid().ToString();
+            var message = new Message(messageData, messageId);
+
+            await this.Save(listing, message);
+            await this.publisher.Publish(messageData);
+            
+            return true;
         }
 
         public async Task<List<DealResponseModel>> BuyDeals(string id) => await context.Deals

@@ -1,4 +1,4 @@
-﻿
+﻿using Seller.Shared.Data;
 
 namespace Seller.Offers.Infrastructure.Extensions
 {

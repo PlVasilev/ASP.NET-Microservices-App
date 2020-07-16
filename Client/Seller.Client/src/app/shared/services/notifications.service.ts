@@ -26,6 +26,8 @@ export class NotificationsService {
             .then(() => console.log('Connection started') )
             .catch(err => console.log('Error while starting connection: ' + err));
         this.hubConnection.on('ReceiveNotification', (data) => {
+            
+            console.log( this.toastr.success(`A New Lising : ${data.title} for $ ${data.price}`));
             this.toastr.success(`A New Lising : ${data.title} for $ ${data.price}`);
         });
     }

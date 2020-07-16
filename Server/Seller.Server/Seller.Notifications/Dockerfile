@@ -10,10 +10,10 @@ COPY ["Seller.Shared/Seller.Shared.csproj", "Seller.Shared/"]
 RUN dotnet restore "Seller.Notifications/Seller.Notifications.csproj"
 COPY . .
 WORKDIR "/src/Seller.Notifications"
-RUN dotnet build "Seller.Notifications.csproj" -c Release -o /app/build
+RUN dotnet build "Seller.Notifications.csproj" -c Debug -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Seller.Notifications.csproj" -c Release -o /app/publish
+RUN dotnet publish "Seller.Notifications.csproj" -c Debug -o /app/publish
 
 FROM base AS final
 WORKDIR /app

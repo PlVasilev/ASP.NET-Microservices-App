@@ -1,4 +1,7 @@
-﻿namespace Seller.Shared.Infrastructure
+﻿using System.Net;
+using Polly;
+
+namespace Seller.Shared.Infrastructure
 {
     using System;
     using System.Net.Http.Headers;
@@ -34,6 +37,11 @@
 
                     var authorizationHeader = new AuthenticationHeaderValue(AuthorizationHeaderValuePrefix, currentToken);
                     client.DefaultRequestHeaders.Authorization = authorizationHeader;
-                });
+                })
+                .AddTransientHttpErrorPolicy(policy => policy
+                    .OrResult(result => result.StatusCode == HttpStatusCode.NotFound)
+                    .WaitAndRetryAsync(5, retry => TimeSpan.FromSeconds(Math.Pow(2, retry))))
+                .AddTransientHttpErrorPolicy(policy => policy
+                    .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
     }
 }

@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Seller.Offers.Data.Models;
+using Seller.Shared.Data;
 
 namespace Seller.Offers.Data
 {

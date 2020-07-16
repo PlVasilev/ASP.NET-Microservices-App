@@ -1,10 +1,11 @@
-﻿
-namespace Seller.Listings.Data
+﻿namespace Seller.Listings.Data
 {
     using Microsoft.EntityFrameworkCore;
     using Models;
+    using System.Reflection;
+    using Seller.Shared.Data;
 
-    public class ListingsDbContext : DbContext
+    public class ListingsDbContext : MessageDbContext
     {
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Deal> Deals { get; set; }
@@ -14,6 +15,8 @@ namespace Seller.Listings.Data
             : base(options)
         {
         }
+
+        protected override Assembly ConfigurationsAssembly => Assembly.GetExecutingAssembly();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

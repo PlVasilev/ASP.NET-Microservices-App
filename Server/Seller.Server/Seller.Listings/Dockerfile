@@ -12,10 +12,10 @@ COPY ["Seller.Shared/Seller.Shared.csproj", "Seller.Shared/"]
 RUN dotnet restore "Seller.Listings/Seller.Listings.csproj"
 COPY . .
 WORKDIR "/src/Seller.Listings"
-RUN dotnet build "Seller.Listings.csproj" -c Release -o /app/build
+RUN dotnet build "Seller.Listings.csproj" -c Debug -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Seller.Listings.csproj" -c Release -o /app/publish
+RUN dotnet publish "Seller.Listings.csproj" -c Debug -o /app/publish
 
 FROM base AS final
 WORKDIR /app
