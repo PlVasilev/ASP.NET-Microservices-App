@@ -2,7 +2,7 @@
     <h1 *ngIf="(saleDeals && buyDeals && saleDeals.length == 0 && buyDeals.length == 0)">YOU HAVE NO DEALS YET</h1>
     <div class="row">
         <div class="col-lg-6">
-            <h1 *ngIf="saleDeals && saleDeals.length> 0">My Sales</h1>
+            <h1 *ngIf="saleDeals && saleDeals.length> 0">Bought Propeties</h1>
             <table *ngIf="saleDeals && saleDeals.length > 0" class="table table-striped">
                 <thead>
                     <tr>
@@ -21,7 +21,7 @@
             </table>
         </div>
         <div class="col-lg-6">
-            <h1 *ngIf="buyDeals && buyDeals.length> 0">My Buys</h1>
+            <h1 *ngIf="buyDeals && buyDeals.length> 0">Sold Properties</h1>
             <table *ngIf="buyDeals && buyDeals.length > 0" class="table table-striped">
                 <thead>
                     <tr>

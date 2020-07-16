@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IOffer } from 'src/app/shared/Interfaces/IOffer';
 import { IOfferSeller } from 'src/app/shared/Interfaces/IOfferSeller';
 import { UserService } from 'src/app/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all',
@@ -20,7 +21,7 @@ export class AllComponent implements OnInit {
     private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,private toastrService: ToastrService) {}
 
   ngOnInit() {
     this.allOffers = new Array();
@@ -41,6 +42,7 @@ export class AllComponent implements OnInit {
    
     const dael = { id, listingId, creatorId, price, title, buyerId : this.userService.getUserId()};
     this.offerService.accept(dael).subscribe(res => {
+      this.toastrService.success("Offer Accepted")
       this.router.navigate(['listing/all']);
     })
   }
