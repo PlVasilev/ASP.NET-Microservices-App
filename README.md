@@ -20,19 +20,20 @@ make offfers and make deal for them.
 	9. Seller.Shared - Library
 
 ## App functionality
-#### Not Logged User can do:
-	1. See Landing page
-	2. Login
-	3. Register
 
-#### Logged User can do:
-	1. **See All Lisings** - *on Get* Direct Call to Listing MS, Search - Client implementation
-	2. **See Mini Lisings** - *on Get* Direct Call to Listing MS, Search - Client implementation
-	3. **Add Listing** - *on Post* Direct Call to Listing MS and**Using Messaging** to send message to NotificationsMS Using SingleR
+#### Not Logged User can do
+1. See Landing page
+2. Login
+3. Register
+
+#### Logged User can do
+1. **See All Lisings** - *on Get* Direct Call to Listing MS, Search - Client implementation
+2. **See Mini Lisings** - *on Get* Direct Call to Listing MS, Search - Client implementation
+3. **Add Listing** - *on Post* Direct Call to Listing MS and**Using Messaging** to send message to NotificationsMS Using SingleR
 		notify the Client and all Logged User about that new listing is published.
-	4. **Lising Deatails** - *on Get* See details Milty Call *from Client to LisingMS* and  *from Client OffersMS* to get offersCount
-		- If User is Owner of listing:
-			1. See all offers - *on Get* Call to **Lising.Gateway** ot agregete data from OffersMS And LisingMS
+4. **Lising Deatails** - *on Get* See details Milty Call *from Client to LisingMS* and  *from Client OffersMS* to get offersCount
+		- If User is Owner of listing
+			 1. See all offers - *on Get* Call to **Lising.Gateway** ot agregete data from OffersMS And LisingMS
 				**Accept**	*on Post* direct call To LisingsMS to crete Deal and set Lising.IsDeal to true and
 				**Using Messaging** call to OfferMS to set this IsAccepted to true to all other offer IsDeleted to True
 			2. Edit Lising - *on Get* - Direct Call to LisingMS, *on Post* Direct Call edit Lising and,
@@ -40,13 +41,13 @@ make offfers and make deal for them.
 			3. Delete Lising - *on Post* Direct Call edit Lising and,**Using Messaging** to set Offers.IsDeleted all associated with this listing 
 			to true - soft delete
 		- If User is not Owner of listing - **Add Offer** - *on Post* Direct Call to OffersMS
-	5. **Mine Offers** - *on Get*  Call To **Lisings.Gateway* to aggregate data from  *LisingMS and OffersMS*
+5. **Mine Offers** - *on Get*  Call To **Lisings.Gateway* to aggregate data from  *LisingMS and OffersMS*
 		- **Deatails** - see listing details;
 		- **Delete** - *on Post* Set IsDeleted to true
-	6. **Mine Deals** - *on Get*  Call To **Lisings.Gateway** to aggregate data from  *LisingMS Buy Deals And Sale Deals Service*
+6. **Mine Deals** - *on Get*  Call To **Lisings.Gateway** to aggregate data from  *LisingMS Buy Deals And Sale Deals Service*
 		and see all Bought Properties and all Sold Properties
-	7. **Contact Us** - *on Post* irect call to Seller.Messages send message to site administrator 
-	8. **Logout** - Clent delete token from Localstorage 
+7. **Contact Us** - *on Post* irect call to Seller.Messages send message to site administrator 
+8. **Logout** - Clent delete token from Localstorage 
 	
-#### Admin can do:
-	1. Can login in **AdminMS** *on get* Direct call see all sent messages from users and archive them on *on Post* direct call
+#### Admin can do
+1. Can login in **AdminMS** *on get* Direct call see all sent messages from users and archive them on *on Post* direct call
