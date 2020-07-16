@@ -22,7 +22,8 @@ namespace Seller.Shared.Infrastructure
             services
                 .AddDatabase<TDbContext>(configuration)
                 .AddApplicationSettings(configuration)
-                .AddJwtAuthentication(configuration);
+                .AddJwtAuthentication(configuration)
+                .AddHealth(configuration);
 
 
         public static IServiceCollection AddDatabase<TDbContext>(this IServiceCollection services, IConfiguration configuration)
@@ -99,6 +100,8 @@ namespace Seller.Shared.Infrastructure
                             host.Password("rabbitmq");
                         });
 
+                        rmq.UseHealthCheck(bus);
+
                         consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
                         {
                             endpoint.PrefetchCount = 6;
@@ -119,6 +122,21 @@ namespace Seller.Shared.Infrastructure
             //services.AddHangfireServer();
 
             //services.AddHostedService<MessagesHostedService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddHealth(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var healthChecks = services.AddHealthChecks();
+
+            healthChecks
+                .AddSqlServer(configuration.GetDefaultConnectionString());
+
+            healthChecks
+                .AddRabbitMQ(rabbitConnectionString: "amqp://rabbitmq:rabbitmq@rabbitmq/");
 
             return services;
         }

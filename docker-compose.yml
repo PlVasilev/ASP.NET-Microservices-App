@@ -147,7 +147,23 @@ services:
         networks: 
             - seller-network
         depends_on:
-            - data            
+            - data    
+
+    watchdog:
+        container_name: watchdog
+        build:
+            context: ./Server/Seller.Server
+            dockerfile: ./Seller.Watchdog/Dockerfile
+        ports: 
+            - "5015:80"
+        env_file: Server/Seller.Server/Seller.Shared/Common.env
+        restart: on-failure
+        volumes:
+            - ./.aspnet/watchdog/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        networks: 
+            - seller-network
+        depends_on:
+            - data              
             
 networks:
     seller-network:
