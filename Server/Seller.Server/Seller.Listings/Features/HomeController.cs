@@ -1,7 +1,6 @@
-﻿using Seller.Shared.Controllers;
-
-namespace Seller.Listings.Features
+﻿namespace Seller.Listings.Features
 {
+    using Shared.Controllers;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : ApiController

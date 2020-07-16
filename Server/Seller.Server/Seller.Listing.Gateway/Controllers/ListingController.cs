@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Listing.Gateway.Models.Deals;
-using Seller.Listing.Gateway.Models.Offers;
-using Seller.Listing.Gateway.Services.Deal;
-using Seller.Listing.Gateway.Services.Listing;
-using Seller.Listing.Gateway.Services.Offer;
-using Seller.Shared.Controllers;
-
-namespace Seller.Listing.Gateway.Controllers
+﻿namespace Seller.Listing.Gateway.Controllers
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Models.Deals;
+    using Models.Offers;
+    using Services.Deal;
+    using Seller.Listing.Gateway.Services.Listing;
+    using Services.Offer;
+    using Seller.Shared.Controllers;
     public class ListingController : ApiController
     {
         private readonly IListingService listingService;

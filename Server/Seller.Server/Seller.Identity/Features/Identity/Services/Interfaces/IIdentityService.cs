@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Seller.Identity.Data.Models;
-
-
-namespace Seller.Identity.Features.Identity.Services.Interfaces
+﻿namespace Seller.Identity.Features.Identity.Services.Interfaces
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Seller.Identity.Data.Models;
     public interface IIdentityService
     {
         string GenerateJwtToken(string userId, string userName, string secret, IEnumerable<string> roles);

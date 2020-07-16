@@ -1,20 +1,18 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Seller.Admin.Infrastructure;
-using Seller.Admin.Services;
-using Refit;
-using Seller.Admin.Services.Identity;
-using Seller.Admin.Services.Message;
-using Seller.Shared.Infrastructure;
-using Seller.Shared.Services.Identity;
-
-
 namespace Seller.Admin
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Infrastructure;
+    using Services;
+    using Refit;
+    using Services.Identity;
+    using Services.Message;
+    using Seller.Shared.Infrastructure;
+    using Seller.Shared.Services.Identity;
     public class Startup
     {
         public Startup(IConfiguration configuration) => this.Configuration = configuration;

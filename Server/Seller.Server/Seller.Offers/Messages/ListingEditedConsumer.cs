@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MassTransit;
-using Seller.Offers.Features.Offer.Services.Interfaces;
-using Seller.Shared.Messages.Offers;
-
-namespace Seller.Offers.Messages
+﻿namespace Seller.Offers.Messages
 {
+    using System.Threading.Tasks;
+    using MassTransit;
+    using Features.Offer.Services.Interfaces;
+    using Seller.Shared.Messages.Offers;
     public class ListingEditedConsumer : IConsumer<ListingEditedMessage>
     {
         private readonly IOfferService offerService;

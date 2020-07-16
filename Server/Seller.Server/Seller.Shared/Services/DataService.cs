@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Seller.Shared.Services
+﻿namespace Seller.Shared.Services
 {
     using System.Linq;
     using System.Threading.Tasks;

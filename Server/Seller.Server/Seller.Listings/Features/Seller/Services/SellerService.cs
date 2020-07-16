@@ -1,15 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Seller.Listings.Data;
-using Seller.Listings.Data.Models;
-using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Listings.Features.Seller.Services.Models;
-using Seller.Shared.Services.Identity;
-
-namespace Seller.Listings.Features.Seller.Services
+﻿namespace Seller.Listings.Features.Seller.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Data;
+    using Listings.Data.Models;
+    using Interfaces;
+    using Models;
+
     public class SellerService : ISellerService
     {
         private readonly ListingsDbContext context;

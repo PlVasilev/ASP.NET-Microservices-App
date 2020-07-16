@@ -1,5 +1,3 @@
-using System;
-
 namespace Seller.Admin.Models
 {
     public class ErrorViewModel

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Refit;
-using Seller.Listing.Gateway.Models.Offers;
-
-namespace Seller.Listing.Gateway.Services.Offer
+﻿namespace Seller.Listing.Gateway.Services.Offer
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Refit;
+    using Models.Offers;
+
     public interface IOfferService
     {
         [Get("/Offer/All/{id}")]

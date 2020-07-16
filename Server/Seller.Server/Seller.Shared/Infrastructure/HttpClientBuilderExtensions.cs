@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Polly;
+﻿
 
 namespace Seller.Shared.Infrastructure
 {
@@ -8,7 +7,8 @@ namespace Seller.Shared.Infrastructure
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Services.Identity;
-
+    using System.Net;
+    using Polly;
     using static InfrastructureConstants;
 
     public static class HttpClientBuilderExtensions

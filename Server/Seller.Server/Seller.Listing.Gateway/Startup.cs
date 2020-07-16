@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Hosting;
-
 namespace Seller.Listing.Gateway
 {
     using Microsoft.AspNetCore.Builder;
@@ -14,6 +12,7 @@ namespace Seller.Listing.Gateway
     using Services.Offer;
     using Seller.Shared.Infrastructure;
     using Seller.Shared.Services.Identity;
+    using Microsoft.Extensions.Hosting;
     public class Startup
     {
         public Startup(IConfiguration configuration)

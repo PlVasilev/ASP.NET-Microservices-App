@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using Seller.Listing.Gateway.Infrastructure.Filters;
-
-namespace Seller.Listing.Gateway.Infrastructure.Extensions
+﻿namespace Seller.Listing.Gateway.Infrastructure.Extensions
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.OpenApi.Models;
+    using Filters;
     public static class ServiceCollectionExtensions
     {
 

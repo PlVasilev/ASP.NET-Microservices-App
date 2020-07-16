@@ -1,5 +1,4 @@
-using Hangfire;
-using Seller.Shared.Messages;
+
 
 namespace Seller.Listings
 {
@@ -10,6 +9,8 @@ namespace Seller.Listings
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Hangfire;
+    using Shared.Messages;
 
     public class Startup
     {

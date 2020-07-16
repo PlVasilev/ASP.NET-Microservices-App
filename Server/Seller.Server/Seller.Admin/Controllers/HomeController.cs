@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Admin.Models;
-using Seller.Shared.Infrastructure;
-
-namespace Seller.Admin.Controllers
+﻿namespace Seller.Admin.Controllers
 {
+    using System.Diagnostics;
+    using Microsoft.AspNetCore.Mvc;
+    using Seller.Admin.Models;
+    using Seller.Shared.Infrastructure;
+
     public class HomeController : Controller
     {
         public IActionResult Index()

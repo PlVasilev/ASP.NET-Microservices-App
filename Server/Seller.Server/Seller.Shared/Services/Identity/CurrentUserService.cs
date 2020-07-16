@@ -1,9 +1,8 @@
-﻿using System;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
-
-namespace Seller.Shared.Services.Identity
+﻿namespace Seller.Shared.Services.Identity
 {
+    using System;
+    using System.Security.Claims;
+    using Microsoft.AspNetCore.Http;
     public class CurrentUserService : ICurrentUserService
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)

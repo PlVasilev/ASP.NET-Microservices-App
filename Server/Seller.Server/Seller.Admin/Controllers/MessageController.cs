@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Admin.Services.Message;
-
-namespace Seller.Admin.Controllers
+﻿namespace Seller.Admin.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Services.Message;
     public class MessageController : AdministrationController
     {
         private readonly IMessageService message;

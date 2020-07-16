@@ -1,15 +1,13 @@
-using MassTransit;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Seller.Offers.Data;
-using Seller.Offers.Infrastructure.Extensions;
-using Seller.Offers.Messages;
-using Seller.Shared.Infrastructure;
-
 namespace Seller.Offers
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Data;
+    using Infrastructure.Extensions;
+    using Messages;
+    using Seller.Shared.Infrastructure;
     public class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;

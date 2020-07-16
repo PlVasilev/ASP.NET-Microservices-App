@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Seller.Shared.Controllers;
-
-namespace Seller.Identity.Features.Identity
+﻿namespace Seller.Identity.Features.Identity
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
@@ -11,7 +8,7 @@ namespace Seller.Identity.Features.Identity
     using Models;
     using Services.Interfaces;
     using Shared;
-
+    using Shared.Controllers;
     public class IdentityController : ApiController
     {
         private readonly UserManager<User> userManager;

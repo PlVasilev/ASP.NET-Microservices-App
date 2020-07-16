@@ -1,8 +1,7 @@
-﻿using System;
-
-namespace Seller.Listings.Data.Models
+﻿namespace Seller.Listings.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System;
 
     public class Deal
     {

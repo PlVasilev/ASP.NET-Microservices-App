@@ -1,12 +1,10 @@
-﻿using Seller.Admin.Services;
-
-namespace Seller.Admin.Infrastructure
+﻿namespace Seller.Admin.Infrastructure
 {
     using System.Threading.Tasks;
     using Seller.Shared.Services.Identity;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
-
+    using Services;
     using static Seller.Shared.Infrastructure.InfrastructureConstants;
 
     public class JwtCookieAuthenticationMiddleware : IMiddleware
@@ -26,7 +24,6 @@ namespace Seller.Admin.Infrastructure
 
                 context.Request.Headers.Append(AuthorizationHeaderName, $"{AuthorizationHeaderValuePrefix} {token}");
             }
-
             await next.Invoke(context);
         }
     }

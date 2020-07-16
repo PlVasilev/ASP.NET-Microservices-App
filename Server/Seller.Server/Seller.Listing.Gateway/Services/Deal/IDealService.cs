@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Refit;
-using Seller.Listing.Gateway.Models.Deals;
-
-namespace Seller.Listing.Gateway.Services.Deal
+﻿namespace Seller.Listing.Gateway.Services.Deal
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Refit;
+    using Models.Deals;
     public interface IDealService
     {
         [Post("/Deal/Create")]

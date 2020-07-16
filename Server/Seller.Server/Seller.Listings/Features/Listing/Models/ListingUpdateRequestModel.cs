@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Seller.Listings.Features.Listing.Models
+﻿namespace Seller.Listings.Features.Listing.Models
 {
+    using System.ComponentModel.DataAnnotations;
     public class ListingUpdateRequestModel
     {
         public string Id { get; set; }

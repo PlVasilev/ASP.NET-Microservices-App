@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using Seller.Listings.Features.Seller.Services.Models;
-
-namespace Seller.Listings.Features.Seller.Services.Interfaces
+﻿namespace Seller.Listings.Features.Seller.Services.Interfaces
 {
+    using System.Threading.Tasks;
+    using Models;
     public interface ISellerService
     {
         Task<SellerIdResponseModel> GetIdByUser(string userId);

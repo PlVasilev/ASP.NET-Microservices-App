@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Listings.Features.Seller.Models;
-using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Listings.Features.Seller.Services.Models;
-using Seller.Shared.Controllers;
-using Seller.Shared.Services.Identity;
-
-namespace Seller.Listings.Features.Seller
+﻿namespace Seller.Listings.Features.Seller
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
+    using Services.Interfaces;
+    using Listings.Features.Seller.Services.Models;
+    using Shared.Controllers;
+    using Shared.Services.Identity;
+
     [Authorize]
     public class SellerController : ApiController
     {

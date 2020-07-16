@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Seller.Listings.Features.Deal.Models;
-
-namespace Seller.Listings.Features.Deal.Services.Interfaces
+﻿namespace Seller.Listings.Features.Deal.Services.Interfaces
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Models;
+
     public interface IDealService
     {
         Task<bool> Create(DealCreateRequestModel model);

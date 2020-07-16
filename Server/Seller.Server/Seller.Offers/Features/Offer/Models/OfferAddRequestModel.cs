@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Seller.Offers.Features.Offer.Models
+﻿namespace Seller.Offers.Features.Offer.Models
 {
+    using System.ComponentModel.DataAnnotations;
     public class OfferAddRequestModel
     {
         [Range(typeof(decimal), "0.01", "79228162514264337593543950335")]

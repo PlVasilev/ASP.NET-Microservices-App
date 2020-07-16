@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Listings.Features.Deal.Models;
-using Seller.Listings.Features.Deal.Services.Interfaces;
-using Seller.Shared.Controllers;
-
-namespace Seller.Listings.Features.Deal
+﻿namespace Seller.Listings.Features.Deal
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
+    using Services.Interfaces;
+    using Shared.Controllers;
+
     [Authorize]
     public class DealController : ApiController
     {

@@ -1,5 +1,4 @@
-﻿
-namespace Seller.Listings.Features.Seller.Models
+﻿namespace Seller.Listings.Features.Seller.Models
 {
     using System.ComponentModel.DataAnnotations;
 

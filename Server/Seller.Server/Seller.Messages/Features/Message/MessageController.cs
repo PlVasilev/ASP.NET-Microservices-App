@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Seller.Messages.Features.Message.Models;
-using Seller.Messages.Features.Message.Services.Interfaces;
-
-namespace Seller.Messages.Features.Message
+﻿namespace Seller.Messages.Features.Message
 {
     using Microsoft.AspNetCore.Authorization;
     using Shared.Controllers;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
+    using Services.Interfaces;
 
-  
+
     public class MessageController : ApiController
     {
         private readonly IMessageService messageService;

@@ -1,7 +1,4 @@
-using Hangfire;
-using Microsoft.EntityFrameworkCore;
-using Seller.Notifications.Infrastructure;
-using Seller.Shared.Data;
+
 
 namespace Seller.Notifications
 {
@@ -13,6 +10,7 @@ namespace Seller.Notifications
     using Hub;
     using Messages;
     using Shared.Infrastructure;
+    using Infrastructure;
     public class Startup
     {
         public Startup(IConfiguration configuration)

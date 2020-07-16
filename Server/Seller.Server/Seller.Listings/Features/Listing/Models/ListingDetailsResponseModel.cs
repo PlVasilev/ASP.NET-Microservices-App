@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Seller.Listings.Data.Models;
-
-namespace Seller.Listings.Features.Listing.Models
+﻿namespace Seller.Listings.Features.Listing.Models
 {
     public class ListingDetailsResponseModel
     {

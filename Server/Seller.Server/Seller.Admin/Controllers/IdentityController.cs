@@ -1,6 +1,4 @@
-﻿using Seller.Admin.Services;
-
-namespace Seller.Admin.Controllers
+﻿namespace Seller.Admin.Controllers
 {
     using System;
     using System.Threading.Tasks;
@@ -9,7 +7,7 @@ namespace Seller.Admin.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Models.Identity;
     using Services.Identity;
-
+    using Services;
     using static Seller.Shared.Infrastructure.InfrastructureConstants;
 
     public class IdentityController : AdministrationController

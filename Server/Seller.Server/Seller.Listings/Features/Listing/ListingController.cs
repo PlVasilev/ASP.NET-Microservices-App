@@ -1,8 +1,4 @@
-﻿using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Shared.Controllers;
-using Seller.Shared.Services.Identity;
-
-namespace Seller.Listings.Features.Listing
+﻿namespace Seller.Listings.Features.Listing
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -10,6 +6,9 @@ namespace Seller.Listings.Features.Listing
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services.Interfaces;
+    using Listings.Features.Seller.Services.Interfaces;
+    using Shared.Controllers;
+    using Shared.Services.Identity;
 
     [Authorize]
     public class ListingController : ApiController

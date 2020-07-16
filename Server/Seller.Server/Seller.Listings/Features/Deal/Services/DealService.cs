@@ -1,12 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MassTransit;
-using Microsoft.EntityFrameworkCore;
-using Seller.Shared.Data.Models;
-using Seller.Shared.Messages.Offers;
-using Seller.Shared.Services;
-
-namespace Seller.Listings.Features.Deal.Services
+﻿namespace Seller.Listings.Features.Deal.Services
 {
     using System;
     using System.Threading.Tasks;
@@ -14,6 +6,13 @@ namespace Seller.Listings.Features.Deal.Services
     using Models;
     using Data.Models;
     using Data;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MassTransit;
+    using Microsoft.EntityFrameworkCore;
+    using Shared.Data.Models;
+    using Shared.Messages.Offers;
+    using Shared.Services;
 
     public class DealService : DataService<Listing>, IDealService
     {

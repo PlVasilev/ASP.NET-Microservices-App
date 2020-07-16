@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using MassTransit;
-using Seller.Offers.Features.Offer.Services.Interfaces;
-using Seller.Shared.Messages.Offers;
-
-namespace Seller.Offers.Messages
+﻿namespace Seller.Offers.Messages
 {
+    using System.Threading.Tasks;
+    using MassTransit;
+    using Features.Offer.Services.Interfaces;
+    using Seller.Shared.Messages.Offers;
     public class ListingDeletedConsumer : IConsumer<ListingDeletedMessage>
     {
         private readonly IOfferService offerService;

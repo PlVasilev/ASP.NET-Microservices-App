@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Seller.Listing.Gateway.Services
+﻿namespace Seller.Listing.Gateway.Services
 {
     public class ServiceEndpoints
     {

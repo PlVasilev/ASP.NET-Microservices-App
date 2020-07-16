@@ -1,6 +1,4 @@
-﻿
-
-namespace Seller.Listings.Features.Listing.Services
+﻿namespace Seller.Listings.Features.Listing.Services
 {
     using MassTransit;
     using Shared.Data.Models;

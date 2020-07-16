@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Seller.Identity.Data.Models;
-
-namespace Seller.Identity.Data
+﻿namespace Seller.Identity.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using Models;
     public class IdentityDbContext : IdentityDbContext<User>
     {
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options)

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Seller.Notifications.Hub
+﻿namespace Seller.Notifications.Hub
 {
+    using System;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
+
     using static Constants;
     public class NotificationsHub : Hub
     {

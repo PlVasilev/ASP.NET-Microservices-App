@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using Refit;
-using Seller.Admin.Models.Identity;
-
-namespace Seller.Admin.Services.Identity
+﻿namespace Seller.Admin.Services.Identity
 {
+    using System.Threading.Tasks;
+    using Refit;
+    using Seller.Admin.Models.Identity;
     public interface IIdentityService
     {
         [Post("/Identity/Login")]

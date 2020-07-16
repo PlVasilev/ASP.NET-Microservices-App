@@ -1,15 +1,14 @@
-﻿using Seller.Listings.Features.Deal.Services;
-using Seller.Listings.Features.Deal.Services.Interfaces;
-using Seller.Listings.Features.Seller.Services;
-using Seller.Listings.Features.Seller.Services.Interfaces;
-using Seller.Listings.Infrastructure.Filters;
-
-namespace Seller.Listings.Infrastructure.Extensions
+﻿namespace Seller.Listings.Infrastructure.Extensions
 {
     using Features.Listing.Services;
     using Features.Listing.Services.Interfaces;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
+    using Features.Deal.Services;
+    using Features.Deal.Services.Interfaces;
+    using Seller.Listings.Features.Seller.Services;
+    using Seller.Listings.Features.Seller.Services.Interfaces;
+    using Filters;
 
     public static class ServiceCollectionExtensions
     {

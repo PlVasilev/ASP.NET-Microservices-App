@@ -1,11 +1,10 @@
-﻿using Seller.Shared.Messages.Offers;
-
-namespace Seller.Notifications.Messages
+﻿namespace Seller.Notifications.Messages
 {
     using System.Threading.Tasks;
     using MassTransit;
     using Microsoft.AspNetCore.SignalR;
     using Hub;
+    using Seller.Shared.Messages.Offers;
     using static Constants;
     public class ListingCreatedConsumer : IConsumer<ListingCreatedMessage>
     {

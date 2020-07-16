@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Options;
-using Seller.Identity.Data;
-using Seller.Identity.Data.Models;
-using Seller.Identity.Features.Identity.Services.Interfaces;
-using Seller.Shared;
-
-namespace Seller.Identity.Features.Identity.Services
+﻿namespace Seller.Identity.Features.Identity.Services
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
@@ -15,6 +8,12 @@ namespace Seller.Identity.Features.Identity.Services
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
+    using System.Collections.Generic;
+    using Microsoft.Extensions.Options;
+    using Data;
+    using Seller.Identity.Data.Models;
+    using Interfaces;
+    using Shared;
 
     public class IdentityService : IIdentityService
     {
