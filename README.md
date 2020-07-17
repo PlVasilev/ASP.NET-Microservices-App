@@ -5,10 +5,15 @@
 This is **extreamly** simple app for Listing Properties on the market,
 make offfers and make deal for them.
 
+
+
 ## App content
+#### All Server Apps and Client App are in Docker.
+##### Start - Docker-Compose up -d
+##### Clent Url http://localhost:4201 (needs about 40 sec to start)
 - Clent App Angular
-- Server Apps ASP.NET 3.1 - 9 Microservices
-	1. Seller.Admin - MVC only for Admin 
+- Server Apps ASP.NET 3.1 - **9 Microservices**
+	1. Seller.Admin - MVC only for Admin http://localhost:5013
 	2. Seller.Identity - Api with DB - Entity Asp.Net.USer
 	3. Seller.Listings - Api with DB 
 		1. Entities - Seller : User, Lising, Deals and Messages from Masstransit
@@ -22,9 +27,9 @@ make offfers and make deal for them.
 ## App functionality
 
 #### Not Logged User can do
-1. See Landing page
-2. Login - *on Post* direct Call login User
-3. Register - *on Post* Multy Call to IdentityMS to Register User and ListingsMS to create Seller : User
+1. **/** - See Landing page
+2. **Login** - *on Post* direct Call login User
+3. **Register** - *on Post* Multy Call to IdentityMS to Register User and ListingsMS to Create Seller : User **First Registered user is Admin**
 
 #### Logged User can do
 1. **See All Lisings** - *on Get* Direct Call to Listing MS, Search - Client implementation
@@ -59,5 +64,5 @@ make offfers and make deal for them.
 
 ## Known Issues
 1. **DOKER issue** outside doker works **Great** - in Microsoft.AspNetCore.Http.HttpContext(context) - context.Request.Cookies[CookieName] - can **not get** Token from Cookie - **added workaround** to keep token state
-2. Masstransit messaging **working as intended** - If Lising is updated and OffersMS is down coresponding offers for the listing are Not updateted, when OffersMS comes up again coresponding offers are automatically updated. **But** in Messages Entity - IsPublished property is **always true !?!?**.
+2. Masstransit messaging **working as intended** - If Lising is updated and OffersMS is down coresponding offers for the listing are Not updateted, when OffersMS comes up again coresponding offers are automatically updated. **But** in Messages Entity - IsPublished property is **always true !?**.
 		

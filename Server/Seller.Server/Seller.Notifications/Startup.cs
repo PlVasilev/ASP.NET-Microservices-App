@@ -40,7 +40,7 @@ namespace Seller.Notifications
 
             app.UseRouting()
                 .UseCors(x => x
-                    .WithOrigins("http://localhost:4200")
+                    .WithOrigins("http://localhost:4201")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials())

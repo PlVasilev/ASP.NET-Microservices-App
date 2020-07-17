@@ -163,7 +163,23 @@ services:
         networks: 
             - seller-network
         depends_on:
-            - data              
+            - data
+            
+    angular:
+        container_name: angular
+        build:
+             context: ./Client/Seller.Client
+             dockerfile: ./Dockerfile
+        ports:
+            - "4201:4200"
+        volumes:
+            - ".:/angular"
+            - "/angular/Client/Seller.Client/node_modules" 
+            - ./.aspnet/angular/DataProtection-Keys:/root/.aspnet/DataProtection-Keys            
+        networks: 
+            - seller-network
+        depends_on:
+            - data
             
 networks:
     seller-network:
