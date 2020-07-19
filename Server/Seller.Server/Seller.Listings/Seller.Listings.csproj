@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-Seller.Server-EE7BF740-7810-4B8E-A577-25BFCEA10045</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>`</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

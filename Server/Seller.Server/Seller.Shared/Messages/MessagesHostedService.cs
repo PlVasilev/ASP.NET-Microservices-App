@@ -1,4 +1,7 @@
-﻿namespace Seller.Shared.Messages
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Seller.Shared.Messages
 {
     using System.Linq;
     using System.Threading;
@@ -12,21 +15,32 @@
     public class MessagesHostedService : IHostedService
     {
         private readonly IRecurringJobManager recurringJob;
-        private readonly DbContext data;
+        private readonly IServiceProvider services;
         private readonly IBus publisher;
 
         public MessagesHostedService(
             IRecurringJobManager recurringJob,
-            DbContext data,
+            IServiceProvider services,
             IBus publisher)
         {
             this.recurringJob = recurringJob;
-            this.data = data;
+            this.services = services;
             this.publisher = publisher;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+
+            using (var scope = this.services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetService<DbContext>();
+
+                if (!dbContext.Database.CanConnect())
+                {
+                    dbContext.Database.Migrate();
+                }
+            }
+
             this.recurringJob.AddOrUpdate(
                 nameof(MessagesHostedService),
                 () => this.ProcessPendingMessages(),
@@ -40,7 +54,12 @@
 
         public void ProcessPendingMessages()
         {
-            var messages = this.data
+            using var scope = this.services.CreateScope();
+
+            var dbContext = scope.ServiceProvider
+                .GetRequiredService<DbContext>();
+
+            var messages = dbContext
                 .Set<Message>()
                 .Where(m => !m.Published)
                 .OrderBy(m => m.Id)
@@ -52,7 +71,7 @@
 
                 message.MarkAsPublished();
 
-                this.data.SaveChanges();
+                dbContext.SaveChanges();
             }
         }
     }

@@ -10,7 +10,7 @@ make offfers and make deal for them.
 ## App content
 #### All Server Apps and Client App are in Docker.
 ##### Start - Docker-Compose up -d
-##### Clent Url http://localhost:4201 (needs about 40 sec to start)
+##### Clent Url http://localhost:4201 (Clent needs about 60 sec to start)
 - Clent App Angular
 - Server Apps ASP.NET 3.1 - **9 Microservices**
 	1. Seller.Admin - MVC only for Admin http://localhost:5013
