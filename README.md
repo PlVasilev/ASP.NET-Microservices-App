@@ -1,16 +1,19 @@
 # ASP.NET-Microservices-App - Seller
-##### ASP.NET Core Server + Angular Client
+
+### ASP.NET Core Server, Angular Client
 
 ### Seller APP Idea
 This is **extreamly** simple app for Listing Properties on the market,
-make offfers and make deal for them.
-
+make offfers and deals for them.
 
 
 ## App content
-#### All Server Apps and Client App are in Docker.
-##### Start - Docker-Compose up -d
-##### Clent Url http://localhost:4201 (Clent needs about 60 sec to start)
+
+### All Server Apps and Client App are in Docker.
+
+#### Start: Docker-Compose up -d
+
+#### Clent Url http://localhost:4201 (Clent needs about 60 sec to start)
 - Clent App Angular
 - Server Apps ASP.NET 3.1 - **9 Microservices**
 	1. Seller.Admin - MVC only for Admin http://localhost:5013
