@@ -3,13 +3,12 @@
 ### ASP.NET Core Server, Angular Client
 
 ### Seller APP Idea
-This is **extreamly** simple app for Listing Properties on the market,
-make offfers and deals for them.
+This is **extreamly** simple app for Listing Properties on the market, make offers and deals for them.
 
 
 ## App content
 
-### All Server Apps and Client App are in Docker.
+### All Server and Client Apps are in Docker.
 
 #### Start: Docker-Compose up -d
 
